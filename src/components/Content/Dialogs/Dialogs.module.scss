@@ -1,1 +1,13 @@
-.dialogs {}
+.dialogs {
+  a {
+    //font-family: Teko;
+    color: navy;
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: none;
+  }
+
+  a.active {
+    color: goldenrod;
+  }
+}

@@ -12,19 +12,21 @@ export type PostItemType = {
 }
 
 const myPostsData: Array<PostItemType> = [
-  { id: 1, img: img1, message: 'Hello! How are you', likesCount: 4 },
-  { id: 2, img: img2, message: 'What are doing now?', likesCount: 14 },
+  {id: 1, img: img1, message: 'Hello! How are you', likesCount: 4},
+  {id: 2, img: img2, message: 'What are doing now?', likesCount: 14},
 ]
 
 export const MyPosts = () => {
   return (
     <div className={styles.myPosts}>
-      <h4>MyPosts</h4>
-      <div className={'inputs'}>
-        <textarea />
+      <h2>MyPosts</h2>
+      <p>
+        <textarea/>
+      </p>
+      <p>
         <button>Add post</button>
-      </div>
-      <Posts posts={myPostsData} />
+      </p>
+      <Posts posts={myPostsData}/>
     </div>
   )
 }
