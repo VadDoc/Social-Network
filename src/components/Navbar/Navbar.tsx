@@ -2,8 +2,18 @@ import React from "react";
 import styles from './Navbar.module.scss'
 import {NavLink} from 'react-router-dom'
 
+export type NavigationType = {
+  pageName : string
+  link : string
+}
 
-export const Navbar = () => {
+type NavBarPropsType = {
+  navBar: {
+    navigation: Array<NavigationType>
+  }
+}
+
+export const Navbar = (props:NavBarPropsType) => {
     return (
         <nav className={styles.nav}>
             <NavLink to={'/profile'} activeClassName={styles.active}>Profile</NavLink>

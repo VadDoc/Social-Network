@@ -14,16 +14,18 @@ export type MessagePropsType = {
 }
 
 export type DialogsPropsType = {
-  dialogsData: Array<DialogPropsType>
-  messagesData: Array<MessagePropsType>
+  messagesPage: {
+    dialogsData: Array<DialogPropsType>
+    messagesData: Array<MessagePropsType>
+  }
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-  const dialogsElements = props.dialogsData.map((elem: DialogPropsType) => (
+  const dialogsElements = props.messagesPage.dialogsData.map((elem: DialogPropsType) => (
     <Dialog name={elem.name} id={elem.id}/>
   ))
 
-  const messagesElements = props.messagesData.map((elem: MessagePropsType) => (
+  const messagesElements = props.messagesPage.messagesData.map((elem: MessagePropsType) => (
     <Message message={elem.message} id={elem.id}/>
   ))
 

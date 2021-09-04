@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from './MyPosts.module.scss'
 import Posts from './Posts/Posts'
-import {ProfilePropsType} from "../Profile";
+
+type MyPostsPropsType = {
+  myPostsData: Array<PostItemType>
+}
 
 export type PostItemType = {
   id: string
@@ -10,7 +13,7 @@ export type PostItemType = {
   likesCount: number
 }
 
-export const MyPosts = (props: ProfilePropsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
   return (
     <div className={styles.myPosts}>
       <h2>MyPosts</h2>

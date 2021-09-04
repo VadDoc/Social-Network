@@ -4,14 +4,16 @@ import styles from './Profile.module.scss'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 export type ProfilePropsType = {
-  myPostsData: Array<PostItemType>
+  profilePage: {
+    myPostsData: Array<PostItemType>
+  }
 }
 
 export const Profile = (props: ProfilePropsType) => {
   return (
     <div className={styles.profile}>
       <ProfileInfo/>
-      <MyPosts myPostsData={props.myPostsData}/>
+      <MyPosts myPostsData={props.profilePage.myPostsData}/>
     </div>
   )
 }
