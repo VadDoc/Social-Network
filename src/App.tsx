@@ -5,10 +5,12 @@ import {Content} from './components/Content/Content'
 import {Navbar, NavigationType} from './components/Navbar/Navbar'
 import {Footer} from './components/Footer/Footer'
 import {BrowserRouter} from 'react-router-dom'
-import {DialogPropsType, MessagePropsType} from "./components/Content/Dialogs/Dialogs";
 import {PostItemType} from "./components/Content/Profile/MyPosts/MyPosts";
+import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
+import {MessageType} from "./components/Content/Dialogs/Message/Message";
+import {addMessage} from "./Redux/state";
 
-export type AppPropsType = {
+type AppPropsType = {
   state: {
     navBar: {
       navigation: Array<NavigationType>
@@ -20,13 +22,16 @@ export type AppPropsType = {
 
     messagesPage: {
       dialogsData: Array<DialogPropsType>
-      messagesData: Array<MessagePropsType>
+      messagesData: Array<MessageType>
     }
 
     newsPage: {}
     musicPage: {},
     settingsPage: {}
   }
+
+  addPost: (postMessage: string) => void
+  addMessage: (message: string) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -41,6 +46,8 @@ const App = (props: AppPropsType) => {
           newsPage={props.state.newsPage}
           musicPage={props.state.musicPage}
           settingsPage={props.state.settingsPage}
+          addPost={props.addPost}
+          addMessage={addMessage}
         />
         <Footer/>
       </div>

@@ -1,32 +1,32 @@
 import React from 'react'
 import styles from './Dialogs.module.scss'
-import {Message} from "./Message/Message";
-import {Dialog} from "./Dialog/Dialog";
+import {Message, MessageType} from "./Message/Message";
+import {Dialog, DialogPropsType} from "./Dialog/Dialog";
+import {AddMessage} from "./AddMessage/AddMessage";
 
-export type DialogPropsType = {
-  name: string
-  id: string
-}
-
-export type MessagePropsType = {
-  message: string
-  id: string
-}
-
-export type DialogsPropsType = {
+type DialogsPropsType = {
   messagesPage: {
     dialogsData: Array<DialogPropsType>
-    messagesData: Array<MessagePropsType>
+    messagesData: Array<MessageType>
   }
+  addMessage: (message: string) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
   const dialogsElements = props.messagesPage.dialogsData.map((elem: DialogPropsType) => (
-    <Dialog name={elem.name} id={elem.id}/>
+    <Dialog
+      key={elem.id}
+      name={elem.name}
+      id={elem.id}
+    />
   ))
 
-  const messagesElements = props.messagesPage.messagesData.map((elem: MessagePropsType) => (
-    <Message message={elem.message} id={elem.id}/>
+  const messagesElements = props.messagesPage.messagesData.map((elem: MessageType) => (
+    <Message
+      key={elem.id}
+      message={elem.message}
+      id={elem.id}
+    />
   ))
 
   return (
@@ -36,6 +36,7 @@ export const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={styles.messages}>
         {messagesElements}
+        <AddMessage addMessage={props.addMessage} />
       </div>
     </div>
   )

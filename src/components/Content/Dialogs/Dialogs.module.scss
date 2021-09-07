@@ -1,4 +1,14 @@
 .dialogs {
+  display: flex;
+
+  .dialogsItems {
+    width: 200px;
+  }
+
+  .messages {
+    padding-left: 20px;
+  }
+
   a {
     //font-family: Teko;
     color: navy;
