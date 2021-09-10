@@ -6,8 +6,10 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 type ProfilePropsType = {
   profilePage: {
     myPostsData: Array<PostItemType>
+    newPostText: string
   }
-  addPost: (postMessage: string) => void
+  updateNewPostText: (post: string) => void
+  addPost: () => void
 }
 
 export const Profile = (props: ProfilePropsType) => {
@@ -15,7 +17,8 @@ export const Profile = (props: ProfilePropsType) => {
     <div className={styles.profile}>
       <ProfileInfo/>
       <MyPosts
-        myPostsData={props.profilePage.myPostsData}
+        profilePage={props.profilePage}
+        updateNewPostText={props.updateNewPostText}
         addPost={props.addPost}
       />
     </div>

@@ -3,8 +3,12 @@ import styles from './MyPosts.module.scss'
 import Posts from './Posts/Posts'
 
 type MyPostsPropsType = {
-  myPostsData: Array<PostItemType>
-  addPost: (postMessage: string) => void
+  profilePage: {
+    myPostsData: Array<PostItemType>
+    newPostText: string
+  }
+  updateNewPostText: (post: string) => void
+  addPost: () => void
 }
 
 export type PostItemType = {
@@ -18,21 +22,28 @@ const newPostElement = React.createRef<HTMLTextAreaElement> ()
 
 export const MyPosts = (props: MyPostsPropsType) => {
   const addPost = () => {
-    let text = newPostElement.current?.value
-    if(text) props.addPost(text)
-    if(newPostElement.current) newPostElement.current.value = ''
+    props.addPost()
+  }
+
+  const onChangePost = () => {
+    const text = newPostElement.current?.value
+    if(text) props.updateNewPostText(text)
   }
 
   return (
     <div className={styles.myPosts}>
       <h2>MyPosts</h2>
       <p>
-        <textarea ref={newPostElement}/>
+        <textarea
+          ref={newPostElement}
+          value={props.profilePage.newPostText}
+          onChange={onChangePost}
+        />
       </p>
       <p>
         <button onClick={addPost}>Add post</button>
       </p>
-      <Posts posts={props.myPostsData}/>
+      <Posts posts={props.profilePage.myPostsData}/>
     </div>
   )
 }

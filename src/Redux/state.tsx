@@ -1,4 +1,3 @@
-// import {DialogPropsType, MessagePropsType} from "../components/Content/Dialogs/Dialogs";
 import {v1} from "uuid";
 import {PostItemType} from "../components/Content/Profile/MyPosts/MyPosts";
 import img from "../images/ava.png"
@@ -7,16 +6,17 @@ import img2 from "../images/ava2.jpeg";
 import {NavigationType} from "../components/Navbar/Navbar";
 import {MessageType} from "../components/Content/Dialogs/Message/Message";
 import {DialogPropsType} from "../components/Content/Dialogs/Dialog/Dialog";
-import {rerenderEntireTree} from "../render";
+
+let rerenderEntireTree = (state: StateType) => {console.log('state')}
 
 export type StateType = {
   navBar: {
     navigation: Array<NavigationType>
-
   }
 
   profilePage: {
     myPostsData: Array<PostItemType>
+    newPostText: string
   }
 
   messagesPage: {
@@ -43,7 +43,8 @@ export const state: StateType = {
     myPostsData: [
       {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
       {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
-    ]
+    ],
+    newPostText: ''
   },
   messagesPage: {
     dialogsData: [
@@ -62,15 +63,21 @@ export const state: StateType = {
   settingsPage: {}
 }
 
-export const addPost = (postMessage: string) => {
+export const updateNewPostText = (post: string) => {
+  state.profilePage.newPostText = post
+  rerenderEntireTree(state)
+}
+
+export const addPost = () => {
   const newPost: PostItemType = {
     id: v1(),
     img: img,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 0
   }
   // let newState = [...state.profilePage.myPostsData, newPost]
-  state.profilePage.myPostsData.push(newPost)
+  if(newPost.message) state.profilePage.myPostsData.push(newPost)
+  state.profilePage.newPostText = ''
   rerenderEntireTree(state)
 }
 
@@ -81,4 +88,8 @@ export const addMessage = (message: string) => {
   }
   state.messagesPage.messagesData.push(newMessage)
   rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: any) => {
+  rerenderEntireTree = observer
 }

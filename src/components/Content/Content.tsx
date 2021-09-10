@@ -13,12 +13,14 @@ import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
 type ContentPropsType = {
   profilePage: {
     myPostsData: Array<PostItemType>
+    newPostText: string
   }
   messagesPage: {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageType>
   }
-  addPost: (postMessage: string) => void
+  updateNewPostText: (post: string) => void
+  addPost: () => void
   addMessage: (message: string) => void
   newsPage: {}
   musicPage: {},
@@ -31,6 +33,7 @@ export const Content = (props: ContentPropsType) => {
             <Route path="/profile"
                    render={() => <Profile
                      profilePage={props.profilePage}
+                     updateNewPostText={props.updateNewPostText}
                      addPost={props.addPost}
                    />}
             />

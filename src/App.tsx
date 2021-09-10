@@ -18,6 +18,7 @@ type AppPropsType = {
 
     profilePage: {
       myPostsData: Array<PostItemType>
+      newPostText: string
     }
 
     messagesPage: {
@@ -29,8 +30,8 @@ type AppPropsType = {
     musicPage: {},
     settingsPage: {}
   }
-
-  addPost: (postMessage: string) => void
+  updateNewPostText: (post: string) => void
+  addPost: () => void
   addMessage: (message: string) => void
 }
 
@@ -46,6 +47,7 @@ const App = (props: AppPropsType) => {
           newsPage={props.state.newsPage}
           musicPage={props.state.musicPage}
           settingsPage={props.state.settingsPage}
+          updateNewPostText={props.updateNewPostText}
           addPost={props.addPost}
           addMessage={addMessage}
         />
