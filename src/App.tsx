@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {PostItemType} from "./components/Content/Profile/MyPosts/MyPosts";
 import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
-import {addMessage} from "./Redux/state";
+import {ActionType} from "./Redux/state";
 
 type AppPropsType = {
   state: {
@@ -30,9 +30,7 @@ type AppPropsType = {
     musicPage: {},
     settingsPage: {}
   }
-  updateNewPostText: (post: string) => void
-  addPost: () => void
-  addMessage: (message: string) => void
+  dispatch: (action: ActionType) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -47,9 +45,7 @@ const App = (props: AppPropsType) => {
           newsPage={props.state.newsPage}
           musicPage={props.state.musicPage}
           settingsPage={props.state.settingsPage}
-          updateNewPostText={props.updateNewPostText}
-          addPost={props.addPost}
-          addMessage={addMessage}
+          dispatch={props.dispatch}
         />
         <Footer/>
       </div>

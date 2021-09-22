@@ -3,13 +3,14 @@ import styles from './Dialogs.module.scss'
 import {Message, MessageType} from "./Message/Message";
 import {Dialog, DialogPropsType} from "./Dialog/Dialog";
 import {AddMessage} from "./AddMessage/AddMessage";
+import {ActionType} from "../../../Redux/state";
 
 type DialogsPropsType = {
   messagesPage: {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageType>
   }
-  addMessage: (message: string) => void
+  dispatch: (action: ActionType) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -36,7 +37,7 @@ export const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={styles.messages}>
         {messagesElements}
-        <AddMessage addMessage={props.addMessage} />
+        <AddMessage dispatch={props.dispatch} />
       </div>
     </div>
   )

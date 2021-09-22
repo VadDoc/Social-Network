@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 import styles from './MyPosts.module.scss'
 import Posts from './Posts/Posts'
+import {
+  ActionType,
+  addPostActionCreator,
+  onChangePostCreator,
+} from "../../../../Redux/state";
 
 type MyPostsPropsType = {
   profilePage: {
     myPostsData: Array<PostItemType>
     newPostText: string
   }
-  updateNewPostText: (post: string) => void
-  addPost: () => void
+  dispatch: (action: ActionType) => void
 }
 
 export type PostItemType = {
@@ -18,16 +22,15 @@ export type PostItemType = {
   likesCount: number
 }
 
-const newPostElement = React.createRef<HTMLTextAreaElement> ()
-
 export const MyPosts = (props: MyPostsPropsType) => {
+
   const addPost = () => {
-    props.addPost()
+    props.dispatch(addPostActionCreator())
   }
 
-  const onChangePost = () => {
-    const text = newPostElement.current?.value
-    if(text) props.updateNewPostText(text)
+  const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const post = e.currentTarget.value
+    if(post) props.dispatch(onChangePostCreator(post))
   }
 
   return (
@@ -35,7 +38,6 @@ export const MyPosts = (props: MyPostsPropsType) => {
       <h2>MyPosts</h2>
       <p>
         <textarea
-          ref={newPostElement}
           value={props.profilePage.newPostText}
           onChange={onChangePost}
         />

@@ -9,6 +9,7 @@ import {Settings} from "./Settings/Settings";
 import {PostItemType} from "./Profile/MyPosts/MyPosts";
 import {MessageType} from "./Dialogs/Message/Message";
 import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
+import {ActionType} from "../../Redux/state";
 
 type ContentPropsType = {
   profilePage: {
@@ -19,9 +20,7 @@ type ContentPropsType = {
     dialogsData: Array<DialogPropsType>
     messagesData: Array<MessageType>
   }
-  updateNewPostText: (post: string) => void
-  addPost: () => void
-  addMessage: (message: string) => void
+  dispatch: (action: ActionType) => void
   newsPage: {}
   musicPage: {},
   settingsPage: {}
@@ -33,14 +32,13 @@ export const Content = (props: ContentPropsType) => {
             <Route path="/profile"
                    render={() => <Profile
                      profilePage={props.profilePage}
-                     updateNewPostText={props.updateNewPostText}
-                     addPost={props.addPost}
+                     dispatch={props.dispatch}
                    />}
             />
             <Route path="/dialogs"
                    render={() => <Dialogs
                      messagesPage={props.messagesPage}
-                     addMessage={props.addMessage}
+                     dispatch={props.dispatch}
                    />}
             />
             <Route path="/news" render={() => <News/>}/>
