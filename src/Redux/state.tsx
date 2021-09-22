@@ -1,12 +1,14 @@
 import {v1} from "uuid";
 import {PostItemType} from "../components/Content/Profile/MyPosts/MyPosts";
-import img from "../images/ava.png"
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
 import {NavigationType} from "../components/Navbar/Navbar";
 import {MessageType} from "../components/Content/Dialogs/Message/Message";
 import {DialogPropsType} from "../components/Content/Dialogs/Dialog/Dialog";
 import {rerenderEntireTreeType} from "../index";
+import {profileReducer} from "./profile-reducer";
+import {navbarReducer} from "./navbar-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type StoreType = {
   _state: StateType
@@ -15,7 +17,6 @@ export type StoreType = {
   subscribe: (observer: rerenderEntireTreeType) => void
   dispatch: (action: ActionType) => void
 }
-
 export type StateType = {
   navBar: {
     navigation: Array<NavigationType>
@@ -47,36 +48,6 @@ export type AddMessageActionType = {
   type: 'ADD_MESSAGE'
   message: string
 }
-// export type AddPostActionType = ReturnType<typeof addPostActionCreator>
-// export type UpdateNewPostTextActionType = ReturnType<typeof onChangePostCreator>
-// export type AddMessageActionType = ReturnType<typeof addMessageCreator>
-type AddPostActionCreatorType = () => AddPostActionType
-type OnChangePostActionCreatorType = (post: string) => UpdateNewPostTextActionType
-type AddMessageCreatorType = (message: string) => AddMessageActionType
-
-const ADD_MESSAGE = "ADD_MESSAGE"
-const ADD_POST = 'ADD_POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
-
-export const addPostActionCreator: AddPostActionCreatorType = () => ({
-  type: ADD_POST
-})
-
-// export const addPostActionCreator = () => {
-//   return {
-//     type: ADD_POST
-//   } as const
-// }
-
-export const addMessageCreator: AddMessageCreatorType = (message) => ({
-    type: ADD_MESSAGE,
-    message: message
-})
-
-export const onChangePostCreator: OnChangePostActionCreatorType = (post) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    post: post
-})
 
 export const store: StoreType = {
   _state: {
@@ -122,29 +93,11 @@ export const store: StoreType = {
     this._callSubscriber = observer
   },
   dispatch(action: ActionType) {
-    if (action.type === ADD_POST) {
-      const newPost: PostItemType = {
-        id: v1(),
-        img: img,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0
-      }
-      if (newPost.message) this._state.profilePage.myPostsData.push(newPost)
-      this._state.profilePage.newPostText = ''
-      this._callSubscriber(this._state)
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.post
-      this._callSubscriber(this._state)
-    } else if (action.type === ADD_MESSAGE) {
-      const newMessage = {
-        id: v1(),
-        message: action.message
-      }
-      this._state.messagesPage.messagesData.push(newMessage)
-      this._callSubscriber(this._state)
-    }
+    this._state.navBar = navbarReducer(this._state.navBar, action)
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+
+    this._callSubscriber(this._state)
   }
 }
 
-
-// window.store = store

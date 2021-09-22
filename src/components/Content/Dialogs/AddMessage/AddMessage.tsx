@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './AddMessage.module.scss'
-import {ActionType, addMessageCreator} from "../../../../Redux/state";
+import {ActionType} from "../../../../Redux/state";
+import {addMessageCreator} from "../../../../Redux/dialogs-reducer";
 
 type AddMessagePropsType = {
   dispatch: (action: ActionType) => void
