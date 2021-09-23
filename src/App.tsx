@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {PostItemType} from "./components/Content/Profile/MyPosts/MyPosts";
 import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
-import {ActionType} from "./Redux/state";
+import {ActionType} from "./Redux/store";
 
 type AppPropsType = {
   state: {

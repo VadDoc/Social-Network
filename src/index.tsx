@@ -1,13 +1,15 @@
 import reportWebVitals from './reportWebVitals';
-import {store} from "./Redux/state";
+import {StateType, store} from "./Redux/redux-store";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-export type rerenderEntireTreeType = ()=>void
+export type rerenderEntireTreeType = (state:StateType)=>void
 
 const rerenderEntireTree:rerenderEntireTreeType = () => {
+  console.log(store.getState())
+
   ReactDOM.render(
     <React.StrictMode>
       <App
@@ -19,8 +21,11 @@ const rerenderEntireTree:rerenderEntireTreeType = () => {
   );
 }
 
-rerenderEntireTree()
+rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+  let state = store.getState()
+  rerenderEntireTree(state)
+})
 
 reportWebVitals();

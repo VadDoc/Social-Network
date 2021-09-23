@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './AddMessage.module.scss'
-import {ActionType} from "../../../../Redux/state";
+import {ActionType} from "../../../../Redux/store";
 import {addMessageCreator} from "../../../../Redux/dialogs-reducer";
 
 type AddMessagePropsType = {

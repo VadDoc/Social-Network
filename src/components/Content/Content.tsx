@@ -9,7 +9,7 @@ import {Settings} from "./Settings/Settings";
 import {PostItemType} from "./Profile/MyPosts/MyPosts";
 import {MessageType} from "./Dialogs/Message/Message";
 import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
-import {ActionType} from "../../Redux/state";
+import {ActionType} from "../../Redux/store";
 
 type ContentPropsType = {
   profilePage: {
