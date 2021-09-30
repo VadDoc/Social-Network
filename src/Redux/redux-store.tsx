@@ -32,7 +32,7 @@ export type StateType = {
 export type ActionType = AddPostActionType | UpdateNewPostTextActionType |
   AddMessageActionType | UpdateNewMessageTextActionType
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
   profilePage: profileReducer,
   messagesPage: dialogsReducer,
   navBar: navbarReducer,
@@ -41,6 +41,8 @@ let reducers = combineReducers({
   settingsPage: settingsReducer
 })
 
-export let store = createStore(reducers)
+export let store = createStore(rootReducer)
 
-export type StoreType = typeof store
+//rootReducer возвращает State всего приложения
+export type AppStateType = ReturnType<typeof rootReducer>
+// export type StoreType = typeof store

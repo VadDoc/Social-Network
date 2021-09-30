@@ -23,15 +23,15 @@ const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 
 const initialState = {
-    myPostsData: [
-      {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
-      {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
-    ],
-    newPostText: ''
-  }
+  myPostsData: [
+    {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
+    {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
+  ],
+  newPostText: ''
+}
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
-  switch(action.type) {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
+  switch (action.type) {
     case ADD_POST:
       const newPost: PostItemType = {
         id: v1(),
@@ -39,12 +39,16 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         message: state.newPostText,
         likesCount: 0
       }
-      if (newPost.message) state.myPostsData.push(newPost)
-      state.newPostText = ''
-      return state
+      return {
+        ...state,
+        newPostText: '',
+        myPostsData: [...state.myPostsData, {id: v1(), img: img, message: state.newPostText, likesCount: 0}]
+      }
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.post
-      return state
+      return {
+        ...state,
+        newPostText: action.post
+      }
     default:
       return state
   }

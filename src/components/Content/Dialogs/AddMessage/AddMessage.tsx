@@ -11,9 +11,10 @@ type AddMessagePropsType = {
     messagesData: Array<MessageType>
     newMessageText: string
   }
+  newDialogMessage: string
 }
 
-export const AddMessage = ({messagesPage, ...props}: AddMessagePropsType) => {
+export const AddMessage:React.FC<AddMessagePropsType>  = ({messagesPage, newDialogMessage, ...props}) => {
   const onChangeMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.currentTarget.value
     if (text) props.changeMessage(text)
@@ -27,7 +28,7 @@ export const AddMessage = ({messagesPage, ...props}: AddMessagePropsType) => {
       <div>
           <textarea
             onChange={onChangeMessage}
-            value={messagesPage.newMessageText}
+            value={newDialogMessage}
             placeholder="Enter your message"
           />
       </div>

@@ -12,9 +12,10 @@ type DialogsPropsType = {
   }
   onSendMessageClick: () => void
   changeMessage: (text:string) => void
+  newDialogMessage: string
 }
 
-export const Dialogs = ({messagesPage, onSendMessageClick, changeMessage}: DialogsPropsType) => {
+export const Dialogs:React.FC<DialogsPropsType> = ({messagesPage, onSendMessageClick, changeMessage, newDialogMessage}) => {
   const dialogsElements = messagesPage.dialogsData.map((elem: DialogPropsType) => (
     <Dialog
       key={elem.id}
@@ -39,6 +40,7 @@ export const Dialogs = ({messagesPage, onSendMessageClick, changeMessage}: Dialo
       <div className={styles.messages}>
         {messagesElements}
         <AddMessage
+          newDialogMessage={newDialogMessage}
           messagesPage={messagesPage}
           sendMessageClick={onSendMessageClick}
           changeMessage={changeMessage}
