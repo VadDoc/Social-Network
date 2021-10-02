@@ -1,15 +1,16 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 import styles from "./Content.module.scss"
 import {Profile} from './Profile/Profile'
 import {News} from "./News/News";
 import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
-import {PostItemType} from "./Profile/MyPosts/MyPosts";
 import {MessageType} from "./Dialogs/Message/Message";
 import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
 import {ActionType} from "../../Redux/redux-store";
 import {DialogsContainer} from "./Dialogs/DialogsContainer";
+import {PostItemType} from "../../Redux/profile-reducer";
+import {UsersContainer} from "./Users/UsersContainer";
 
 type ContentPropsType = {
   profilePage: {
@@ -28,13 +29,15 @@ type ContentPropsType = {
 }
 
 export const Content = (props: ContentPropsType) => {
-    return (
-        <main className={styles.content}>
-            <Route path="/profile" render={() => <Profile/>} />
-            <Route path="/dialogs" render={() => <DialogsContainer/>} />
-            <Route path="/news" render={() => <News/>}/>
-            <Route path="/music" render={() => <Music/>}/>
-            <Route path="/settings" render={() => <Settings />}/>
-        </main>
-    )
+  return (
+    <main className={styles.content}>
+      <Route path="/profile" render={() => <Profile/>}/>
+      <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+      <Route path="/users" render={() => <UsersContainer/>}/>
+      <Route path="/news" render={() => <News/>}/>
+      <Route path="/music" render={() => <Music/>}/>
+      <Route path="/settings" render={() => <Settings/>}/>
+      <Redirect from='/' to='/profile'/>
+    </main>
+  )
 }

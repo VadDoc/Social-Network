@@ -1,12 +1,11 @@
 import {v1} from "uuid";
-import {PostItemType} from "../components/Content/Profile/MyPosts/MyPosts";
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
 import {NavigationType} from "../components/Navbar/Navbar";
 import {MessageType} from "../components/Content/Dialogs/Message/Message";
 import {DialogPropsType} from "../components/Content/Dialogs/Dialog/Dialog";
 import {rerenderEntireTreeType} from "../index";
-import {profileReducer} from "./profile-reducer";
+import {PostItemType, profileReducer} from "./profile-reducer";
 import {navbarReducer} from "./navbar-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 
@@ -49,7 +48,7 @@ type UpdateNewPostTextActionType = {
   post: string
 }
 type AddMessageActionType = {
-  type: 'SEND_MESSAGE'
+  type: 'ADD_MESSAGE'
 }
 
 type UpdateNewMessageTextActionType = {

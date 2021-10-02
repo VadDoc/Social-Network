@@ -5,10 +5,10 @@ import {Content} from './components/Content/Content'
 import {Navbar, NavigationType} from './components/Navbar/Navbar'
 import {Footer} from './components/Footer/Footer'
 import {BrowserRouter} from 'react-router-dom'
-import {PostItemType} from "./components/Content/Profile/MyPosts/MyPosts";
 import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
 import {ActionType} from "./Redux/redux-store";
+import {PostItemType} from "./Redux/profile-reducer";
 
 type AppPropsType = {
   state: {

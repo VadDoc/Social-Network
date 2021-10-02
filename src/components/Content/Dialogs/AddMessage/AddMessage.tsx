@@ -27,6 +27,7 @@ export const AddMessage:React.FC<AddMessagePropsType>  = ({messagesPage, newDial
     <div className={styles.addMessage}>
       <div>
           <textarea
+
             onChange={onChangeMessage}
             value={newDialogMessage}
             placeholder="Enter your message"

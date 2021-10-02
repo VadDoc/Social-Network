@@ -3,19 +3,9 @@ import styles from './Dialogs.module.scss'
 import {Message, MessageType} from "./Message/Message";
 import {Dialog, DialogPropsType} from "./Dialog/Dialog";
 import {AddMessage} from "./AddMessage/AddMessage";
+import {DialogsPropsType} from "./DialogsContainer";
 
-type DialogsPropsType = {
-  messagesPage: {
-    dialogsData: Array<DialogPropsType>
-    messagesData: Array<MessageType>
-    newMessageText: string
-  }
-  onSendMessageClick: () => void
-  changeMessage: (text:string) => void
-  newDialogMessage: string
-}
-
-export const Dialogs:React.FC<DialogsPropsType> = ({messagesPage, onSendMessageClick, changeMessage, newDialogMessage}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({messagesPage, onSendMessageClick, changeMessage, newDialogMessage}) => {
   const dialogsElements = messagesPage.dialogsData.map((elem: DialogPropsType) => (
     <Dialog
       key={elem.id}

@@ -1,6 +1,6 @@
 import {addPostActionCreator, onChangePostCreator, ProfilePageType} from "../../../../Redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
-import {AppStateType} from "../../../../Redux/redux-store";
+import {StateType} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
@@ -12,7 +12,9 @@ type mapDispatchToPropsType = {
   onChangePost: (post: string) => void
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+export type MyPostsPropsType = mapStateToPropsType & mapDispatchToPropsType
+
+const mapStateToProps = (state: StateType): mapStateToPropsType => {
   return {
     profilePage: state.profilePage
   }

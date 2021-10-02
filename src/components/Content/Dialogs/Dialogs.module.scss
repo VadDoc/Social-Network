@@ -1,12 +1,15 @@
 .dialogs {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 
   .dialogsItems {
-    width: 200px;
+    min-width: 200px;
   }
 
   .messages {
     padding-left: 20px;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   a {

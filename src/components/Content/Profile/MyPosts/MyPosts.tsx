@@ -1,23 +1,9 @@
 import React, {ChangeEvent} from 'react'
 import styles from './MyPosts.module.scss'
 import Posts from './Posts/Posts'
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-  profilePage: {
-    myPostsData: Array<PostItemType>
-    newPostText: string
-  }
-  addPost: () => void
-  onChangePost: (post: string) => void
-}
-export type PostItemType = {
-  id: string
-  img: string
-  message: string
-  likesCount: number
-}
-
-export const MyPosts = ({profilePage, ...props}: MyPostsPropsType) => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({profilePage, ...props}) => {
   const addPost = () => {
     props.addPost()
   }

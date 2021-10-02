@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Posts.module.scss'
-import { PostItemType } from '../MyPosts'
+import {PostItemType} from "../../../../../Redux/profile-reducer";
 
 type PropsType = {
   posts: Array<PostItemType>
