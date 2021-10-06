@@ -4,7 +4,7 @@ import {Header} from './components/Header/Header'
 import {Content} from './components/Content/Content'
 import {Navbar, NavigationType} from './components/Navbar/Navbar'
 import {Footer} from './components/Footer/Footer'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, HashRouter} from 'react-router-dom'
 import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
 import {PostItemType} from "./Redux/profile-reducer";
@@ -33,7 +33,7 @@ type AppPropsType = {
 
 const App = (props: AppPropsType) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app">
         <Header/>
         <Navbar navBar={props.state.navBar}/>
@@ -47,7 +47,7 @@ const App = (props: AppPropsType) => {
         />
         <Footer/>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
