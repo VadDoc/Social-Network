@@ -1,15 +1,7 @@
 import {v1} from "uuid";
 import {DialogPropsType} from "../components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "../components/Content/Dialogs/Message/Message";
-import {ActionType} from "./redux-store";
 
-export type AddMessageActionType = {
-  type: 'ADD_MESSAGE'
-}
-export type UpdateNewMessageTextActionType = {
-  type: 'UPDATE_NEW_MESSAGE_TEXT',
-  newText: string,
-}
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 const ADD_MESSAGE = 'ADD_MESSAGE'
 
@@ -28,7 +20,7 @@ const initialState = {
   newMessageText: '',
 }
 
-export const dialogsReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
+export const dialogsReducer = (state: MessagesPageType = initialState, action: DialogsReducerActionsType): MessagesPageType => {
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_TEXT:
       return {
@@ -47,11 +39,18 @@ export const dialogsReducer = (state: MessagesPageType = initialState, action: A
   }
 }
 
-type AddMessageCreatorType = () => AddMessageActionType
-type UpdateNewMessageTextCreatorType = (text: string) => UpdateNewMessageTextActionType
+export type DialogsReducerActionsType = AddMessageActionType | UpdateNewMessageTextActionType
+type AddMessageActionType = ReturnType<typeof addMessageAC>
+type UpdateNewMessageTextActionType = ReturnType<typeof updateNewMessageTextAC>
 
-export const addMessageActionCreator: AddMessageCreatorType = () => ({type: ADD_MESSAGE})
-export const updateNewMessageTextActionCreator: UpdateNewMessageTextCreatorType = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  newText: text,
-})
+export const addMessageAC = () => {
+  return {
+    type: ADD_MESSAGE
+  } as const
+}
+export const updateNewMessageTextAC = (text: string) => {
+  return {
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    newText: text,
+  } as const
+}

@@ -1,0 +1,20 @@
+.nav {
+  background-color: rgb(3, 75, 182);
+  padding: 30px 40px;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+
+  a {
+    font-family: Teko;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a.active {
+    color: goldenrod;
+  }
+}

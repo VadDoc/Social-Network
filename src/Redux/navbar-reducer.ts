@@ -1,6 +1,6 @@
 import {NavigationType} from "../components/Navbar/Navbar";
 import {v1} from "uuid";
-import {ActionType} from "./redux-store";
+import {ActionsType} from "./redux-store";
 
 export type NavBarType = {
   navigation: Array<NavigationType>
@@ -17,6 +17,6 @@ const initialState = {
   ]
 }
 
-export const navbarReducer = (state: NavBarType = initialState, action: ActionType) => {
+export const navbarReducer = (state: NavBarType = initialState, action: ActionsType) => {
   return state
 }

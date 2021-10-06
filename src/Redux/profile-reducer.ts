@@ -2,7 +2,6 @@ import {v1} from "uuid";
 import img from "../images/ava.png";
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
-import {ActionType} from "./redux-store";
 
 export type PostItemType = {
   id: string
@@ -10,17 +9,11 @@ export type PostItemType = {
   message: string
   likesCount: number
 }
-export type AddPostActionType = {
-  type: 'ADD_POST'
-}
-export type UpdateNewPostTextActionType = {
-  type: 'UPDATE_NEW_POST_TEXT'
-  post: string
-}
+export type ProfilePageType = typeof initialState
+
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 
-export type ProfilePageType = typeof initialState
 const initialState = {
   myPostsData: [
     {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
@@ -29,7 +22,7 @@ const initialState = {
   newPostText: ''
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
   switch (action.type) {
     case ADD_POST:
       const newPost: PostItemType = {
@@ -53,13 +46,18 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
   }
 }
 
-type AddPostActionCreatorType = () => AddPostActionType
-type OnChangePostActionCreatorType = (post: string) => UpdateNewPostTextActionType
+export type ProfileReducerActionsType = AddPostActionType | OnChangePostActionType
+type AddPostActionType = ReturnType<typeof addPostAC>
+type OnChangePostActionType = ReturnType<typeof onChangePostAC>
 
-export const addPostActionCreator: AddPostActionCreatorType = () => ({
-  type: ADD_POST
-})
-export const onChangePostCreator: OnChangePostActionCreatorType = (post) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  post: post
-})
+export const addPostAC = () => {
+  return {
+    type: ADD_POST
+  } as const
+}
+export const onChangePostAC = (post: string) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    post: post
+  } as const
+}

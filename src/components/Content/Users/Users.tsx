@@ -2,56 +2,44 @@ import React from 'react'
 import styles from './Users.module.scss'
 import {UsersPropsType} from "./UsersContainer";
 import {User} from "./User/User";
-import {v1} from "uuid";
-import img1 from "../../../images/ava1.jpeg";
-import img2 from "../../../images/ava2.jpeg";
-import img3 from "../../../images/ava3.jpeg";
+import axios from "axios";
+
+type DataType = {
+  error: null | string
+  totalCount: number
+  items: Array<UserType>
+}
+export type UserType = {
+  name: string
+  id: number
+  uniqueUrlName: null | string
+  photos: {
+    small: null | string
+    large: null | string
+  }
+  status: null | string
+  followed: boolean
+}
 
 export const Users: React.FC<UsersPropsType> = ({users, followUser, unFollowUser, setUser}) => {
   const userItems = users.map(user => (
     <User
-      key={user.userID}
-      avatar={user.avatar}
-      userID={user.userID}
-      firstName={user.firstName}
-      lastName={user.lastName}
+      key={user.id}
+      name={user.name}
+      userID={user.id}
+      uniqueUrlName={user.uniqueUrlName}
+      photos={user.photos}
       status={user.status}
-      isFollowed={user.isFollowed}
-      location={user.location}
+      followed={user.followed}
       followUser={followUser}
       unFollowUser={unFollowUser}
     />
   ))
-  if(userItems.length===0) {
-    setUser([
-      {
-        userID: v1(),
-        avatar: img1,
-        isFollowed: false,
-        status: 'I am exited',
-        firstName: 'Jane',
-        lastName: 'Brown',
-        location: {country: 'US', city: 'New York'}
-      },
-      {
-        userID: v1(),
-        avatar: img2,
-        isFollowed: false,
-        status: 'I am fine',
-        firstName: 'Anna',
-        lastName: 'Bilyk',
-        location: {country: 'Ukraine', city: 'Kyiv'}
-      },
-      {
-        userID: v1(),
-        avatar: img3,
-        isFollowed: false,
-        status: 'I am relax',
-        firstName: 'Michel',
-        lastName: 'Bones',
-        location: {country: 'France', city: 'Bordo'}
-      },
-    ])
+
+  if (userItems.length === 0) {
+    axios.get<DataType>("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+      setUser(response.data.items)
+    })
   }
 
   return (

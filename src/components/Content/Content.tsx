@@ -7,7 +7,7 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {MessageType} from "./Dialogs/Message/Message";
 import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
-import {ActionType} from "../../Redux/redux-store";
+import {ActionsType} from "../../Redux/redux-store";
 import {DialogsContainer} from "./Dialogs/DialogsContainer";
 import {PostItemType} from "../../Redux/profile-reducer";
 import {UsersContainer} from "./Users/UsersContainer";
@@ -22,7 +22,7 @@ type ContentPropsType = {
     messagesData: Array<MessageType>
     newMessageText: string
   }
-  dispatch: (action: ActionType) => void
+  dispatch: (action: ActionsType) => void
   newsPage: {}
   musicPage: {}
   settingsPage: {}

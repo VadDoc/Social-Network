@@ -7,31 +7,28 @@ import {Footer} from './components/Footer/Footer'
 import {BrowserRouter} from 'react-router-dom'
 import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
-import {ActionType} from "./Redux/redux-store";
 import {PostItemType} from "./Redux/profile-reducer";
+import {ActionsType} from "./Redux/redux-store";
 
 type AppPropsType = {
   state: {
     navBar: {
       navigation: Array<NavigationType>
     }
-
     profilePage: {
       myPostsData: Array<PostItemType>
       newPostText: string
     }
-
     messagesPage: {
       dialogsData: Array<DialogPropsType>
       messagesData: Array<MessageType>
       newMessageText: string
     }
-
     newsPage: {}
     musicPage: {},
     settingsPage: {}
   }
-  dispatch: (action: ActionType) => void
+  dispatch: (action: ActionsType) => void
 }
 
 const App = (props: AppPropsType) => {
