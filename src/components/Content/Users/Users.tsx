@@ -37,7 +37,12 @@ export const Users: React.FC<UsersPropsType> = ({users, followUser, unFollowUser
   ))
 
   if (userItems.length === 0) {
-    axios.get<DataType>("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    axios.get<DataType>("https://social-network.samuraijs.com/api/1.0/users", {
+      withCredentials: true,
+      headers:{
+        'API-key': 'b1080483-6498-445e-9780-91e9c47f08f9'
+      }
+    }).then(response => {
       setUser(response.data.items)
     })
   }
