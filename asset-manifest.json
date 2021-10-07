@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Social-Network/static/css/main.63493e75.chunk.css",
-    "main.js": "/Social-Network/static/js/main.0aa4dd02.chunk.js",
-    "main.js.map": "/Social-Network/static/js/main.0aa4dd02.chunk.js.map",
-    "runtime-main.js": "/Social-Network/static/js/runtime-main.fd0a087d.js",
-    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.fd0a087d.js.map",
-    "static/js/2.552ce051.chunk.js": "/Social-Network/static/js/2.552ce051.chunk.js",
-    "static/js/2.552ce051.chunk.js.map": "/Social-Network/static/js/2.552ce051.chunk.js.map",
-    "static/js/3.3adb728f.chunk.js": "/Social-Network/static/js/3.3adb728f.chunk.js",
-    "static/js/3.3adb728f.chunk.js.map": "/Social-Network/static/js/3.3adb728f.chunk.js.map",
+    "main.js": "/Social-Network/static/js/main.0bbac10d.chunk.js",
+    "main.js.map": "/Social-Network/static/js/main.0bbac10d.chunk.js.map",
+    "runtime-main.js": "/Social-Network/static/js/runtime-main.2cf1d589.js",
+    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.2cf1d589.js.map",
+    "static/js/2.8bcfde03.chunk.js": "/Social-Network/static/js/2.8bcfde03.chunk.js",
+    "static/js/2.8bcfde03.chunk.js.map": "/Social-Network/static/js/2.8bcfde03.chunk.js.map",
+    "static/js/3.025cf3c2.chunk.js": "/Social-Network/static/js/3.025cf3c2.chunk.js",
+    "static/js/3.025cf3c2.chunk.js.map": "/Social-Network/static/js/3.025cf3c2.chunk.js.map",
     "index.html": "/Social-Network/index.html",
     "static/css/main.63493e75.chunk.css.map": "/Social-Network/static/css/main.63493e75.chunk.css.map",
-    "static/js/2.552ce051.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.552ce051.chunk.js.LICENSE.txt",
+    "static/js/2.8bcfde03.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.8bcfde03.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/Social-Network/static/media/Teko-Regular.7a95ca68.ttf",
     "static/media/ava.28e44cb7.png": "/Social-Network/static/media/ava.28e44cb7.png",
     "static/media/ava1.4ab0e03f.jpeg": "/Social-Network/static/media/ava1.4ab0e03f.jpeg",
@@ -19,9 +19,9 @@
     "static/media/gold-elephant.8fa88fbe.png": "/Social-Network/static/media/gold-elephant.8fa88fbe.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.fd0a087d.js",
-    "static/js/2.552ce051.chunk.js",
+    "static/js/runtime-main.2cf1d589.js",
+    "static/js/2.8bcfde03.chunk.js",
     "static/css/main.63493e75.chunk.css",
-    "static/js/main.0aa4dd02.chunk.js"
+    "static/js/main.0bbac10d.chunk.js"
   ]
 }
