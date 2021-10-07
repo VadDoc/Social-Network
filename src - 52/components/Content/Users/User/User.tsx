@@ -24,6 +24,7 @@ export const User: React.FC<UserPropsType> = ({
                                               }) => {
   const toggleFollowUser = () => followed ? unFollowUser(userID) : followUser(userID)
   const titleButton = followed ? 'Unfollow' : 'Follow'
+  // const buttonClassName = {color: 'green'}
 
   return (
     <div className={styles.user}>
