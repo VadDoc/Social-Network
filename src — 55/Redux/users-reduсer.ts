@@ -1,16 +1,8 @@
-export type UserType = {
-  name: string
-  id: number
-  uniqueUrlName: null | string
-  photos: {
-    small: null | string
-    large: null | string
-  }
-  status: null | string
-  followed: boolean
-}
+import {UserType} from "../components/Content/Users/Users";
+
+export type UsersType = Array<UserType>
 export type UsersPageType = {
-  users: Array<UserType>
+  users: UsersType
   pageSize: number
   totalUsersCount: number
   currentPage: number
@@ -82,7 +74,7 @@ export const unFollowUsersAC = (userID: number) => {
     userID
   } as const
 }
-export const setUsersAC = (users: Array<UserType>) => {
+export const setUsersAC = (users: UsersType) => {
   return {
     type: SET_USERS,
     users

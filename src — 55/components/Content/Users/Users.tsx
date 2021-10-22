@@ -21,37 +21,36 @@ export type UserType = {
   followed: boolean
 }
 
-export class Users extends React.Component <UsersPropsType> {
-  componentDidMount() {
+export const Users: React.FC<UsersPropsType> = ({users, followUser, unFollowUser, setUser}) => {
+  const userItems = users.map(user => (
+    <User
+      key={user.id}
+      name={user.name}
+      userID={user.id}
+      uniqueUrlName={user.uniqueUrlName}
+      photos={user.photos}
+      status={user.status}
+      followed={user.followed}
+      followUser={followUser}
+      unFollowUser={unFollowUser}
+    />
+  ))
+
+  if (userItems.length === 0) {
     axios.get<DataType>("https://social-network.samuraijs.com/api/1.0/users", {
       withCredentials: true,
-      headers: {
+      headers:{
         'API-key': 'b1080483-6498-445e-9780-91e9c47f08f9'
       }
     }).then(response => {
-      this.props.setUser(response.data.items)
+      setUser(response.data.items)
     })
   }
 
-  render() {
-    return (
-      <div className={styles.users}>
-        {this.props.users.map(user => (
-          <User
-            key={user.id}
-            name={user.name}
-            userID={user.id}
-            uniqueUrlName={user.uniqueUrlName}
-            photos={user.photos}
-            status={user.status}
-            followed={user.followed}
-            followUser={this.props.followUser}
-            unFollowUser={this.props.unFollowUser}
-          />
-        ))}
-      </div>
-    )
-  }
+  return (
+    <div className={styles.users}>
+      {userItems}
+    </div>
+  )
 }
-
 

@@ -1,56 +1,51 @@
 import React from 'react'
-import styles from './Users.module.scss'
-import {UsersPropsType} from "./UsersContainer";
+import styles from "./Users.module.scss";
 import {User} from "./User/User";
-import axios from "axios";
+import {UserType} from "../../../Redux/users-reduсer";
 
-type DataType = {
-  error: null | string
-  totalCount: number
-  items: Array<UserType>
-}
-export type UserType = {
-  name: string
-  id: number
-  uniqueUrlName: null | string
-  photos: {
-    small: null | string
-    large: null | string
-  }
-  status: null | string
-  followed: boolean
+type PropsType = {
+  users: Array<UserType>
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
+  followUser: (userID: number) => void
+  unFollowUser: (userID: number) => void
+  onChangedPage: (numberCurrentPage: number) => void
 }
 
-export const Users: React.FC<UsersPropsType> = ({users, followUser, unFollowUser, setUser}) => {
-  const userItems = users.map(user => (
-    <User
-      key={user.id}
-      name={user.name}
-      userID={user.id}
-      uniqueUrlName={user.uniqueUrlName}
-      photos={user.photos}
-      status={user.status}
-      followed={user.followed}
-      followUser={followUser}
-      unFollowUser={unFollowUser}
-    />
-  ))
-
-  if (userItems.length === 0) {
-    axios.get<DataType>("https://social-network.samuraijs.com/api/1.0/users", {
-      withCredentials: true,
-      headers:{
-        'API-key': 'b1080483-6498-445e-9780-91e9c47f08f9'
-      }
-    }).then(response => {
-      setUser(response.data.items)
-    })
+export const Users = (props: PropsType) => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+  let numberPages = []
+  for (let i = 1; i <= pagesCount; i++) {
+    numberPages.push(i)
   }
-
   return (
     <div className={styles.users}>
-      {userItems}
+      <div className={styles.numberPages}>
+        {numberPages.map(num => (
+          <div
+            className={props.currentPage === num ? `${styles.numberPage} ${styles.selected}` : styles.numberPage}
+            onClick={() => {
+              props.onChangedPage(num)
+            }}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+      {props.users.map(user => (
+        <User
+          key={user.id}
+          name={user.name}
+          userID={user.id}
+          uniqueUrlName={user.uniqueUrlName}
+          photos={user.photos}
+          status={user.status}
+          followed={user.followed}
+          followUser={props.followUser}
+          unFollowUser={props.unFollowUser}
+        />
+      ))}
     </div>
   )
 }
-
