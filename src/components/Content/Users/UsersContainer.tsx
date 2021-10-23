@@ -7,7 +7,6 @@ import {
 import axios from "axios";
 import React from "react";
 import {Users} from "./Users";
-import spinner from "../../../images/Spinner-1s-273px.svg"
 import {Preloader} from "../../Сommon/Preloader/Preloader";
 
 type DataType = {
@@ -90,31 +89,37 @@ const mapStateToProps = (state: StateType) => {
     isFetching: state.usersPage.isFetching,
   }
 }
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    followUser: (userID: number) => {
-      dispatch(followUsersAC(userID))
-    },
-    unFollowUser: (userID: number) => {
-      dispatch(unFollowUsersAC(userID))
-    },
-    setUser: (users: Array<UserType>) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (numberCurrentPage: number) => {
-      dispatch(setCurrentPageAC(numberCurrentPage))
-    },
-    setTotalUsersCount: (totalUsersCount: number) => {
-      dispatch(setTotalUsersCountAC(totalUsersCount))
-    },
-    setToggleIsFetch: (isFetching: boolean) => {
-      dispatch(setToggleIsFetchingAC(isFetching))
-    }
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {
+//     followUser: (userID: number) => {
+//       dispatch(followUsersAC(userID))
+//     },
+//     unFollowUser: (userID: number) => {
+//       dispatch(unFollowUsersAC(userID))
+//     },
+//     setUser: (users: Array<UserType>) => {
+//       dispatch(setUsersAC(users))
+//     },
+//     setCurrentPage: (numberCurrentPage: number) => {
+//       dispatch(setCurrentPageAC(numberCurrentPage))
+//     },
+//     setTotalUsersCount: (totalUsersCount: number) => {
+//       dispatch(setTotalUsersCountAC(totalUsersCount))
+//     },
+//     setToggleIsFetch: (isFetching: boolean) => {
+//       dispatch(setToggleIsFetchingAC(isFetching))
+//     }
+//   }
+// }
 
-  }
-}
-
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+export const UsersContainer = connect(mapStateToProps, {
+  followUser: followUsersAC,
+  unFollowUser: unFollowUsersAC,
+  setUser: setUsersAC,
+  setCurrentPage: setCurrentPageAC,
+  setTotalUsersCount: setTotalUsersCountAC,
+  setToggleIsFetch: setToggleIsFetchingAC,
+})(UsersApiContainer)
 
 
 
