@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  background-color: rgb(2, 59, 145);
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 90px;
+    padding-right: 50px;
+  }
+
+  h1 {
+    color: goldenrod;
+    font-family: Teko;
+    font-size: 55px;
+  }
+
+}
