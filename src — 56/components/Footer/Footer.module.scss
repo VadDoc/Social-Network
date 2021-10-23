@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(2, 59, 145);
+  color: goldenrod;
+  font-size: 22px;
+}
+
+
+
+.footer.active {
+  color: red;
+  }
+  
+  .active {
+color: black;
+}
