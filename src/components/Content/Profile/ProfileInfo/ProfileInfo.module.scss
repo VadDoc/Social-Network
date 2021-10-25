@@ -1,11 +1,36 @@
 .profileInfo {
-  img {
-    width: 100%;
-    height: 50vh;
-    object-fit: cover;
+  position: relative;
+  min-height: 200px;
+
+  .logoLarge {
+    position: absolute;
+    left: -25px;
+    bottom: -45px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
-  .description {
-    padding: 50px 50px 0 50px;
+  .logoContainer {
+    position: relative;
+    min-height: 100px;
+
+    .logoSmall {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .job {
+      position: absolute;
+      left: -15px;
+      bottom: -20px;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+    }
   }
+
 }

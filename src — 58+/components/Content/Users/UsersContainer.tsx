@@ -82,8 +82,7 @@ const mapStateToProps = (state: StateType) => {
   }
 }
 
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
-(mapStateToProps, {
+export const UsersContainer = connect(mapStateToProps, {
   followUser, unFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetch,
 })(UsersApiContainer)
 

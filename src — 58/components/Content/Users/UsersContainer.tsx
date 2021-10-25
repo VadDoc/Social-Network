@@ -4,21 +4,29 @@ import {
   followUser, setCurrentPage, setToggleIsFetch, setTotalUsersCount,
   setUsers, unFollowUser, UserType
 } from "../../../Redux/users-reduсer";
+import axios from "axios";
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../../Сommon/Preloader/Preloader";
-import {axiosInstance} from "../../Сommon/AxiosInstance/axiosInstance";
 
-type DataUsersType = {
+type DataType = {
   error: null | string
   totalCount: number
   items: Array<UserType>
 }
+//базовые настройки запроса в axios
+export const axiosInstance = axios.create({
+  baseURL: 'https://social-network.samuraijs.com/api/1.0',
+  withCredentials: true,
+  headers: {
+    'API-key': 'b1080483-6498-445e-9780-91e9c47f08f9'
+  }
+})
 
 class UsersApiContainer extends React.Component <UsersPropsType> {
   componentDidMount() {
-    this.props.setToggleIsFetch(true) //меняем статус preloader
-    axiosInstance.get<DataUsersType>(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+    this.props.setToggleIsFetch(true)
+    axiosInstance.get<DataType>(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.setToggleIsFetch(false)
         this.props.setUsers(response.data.items) // отправляем в store users
@@ -28,9 +36,9 @@ class UsersApiContainer extends React.Component <UsersPropsType> {
 
   //запрос на сервер после изменения компоненты
   onChangedPage = (numberCurrentPage: number) => {
-    this.props.setToggleIsFetch(true)  //меняем статус preloader
+    this.props.setToggleIsFetch(true)
     this.props.setCurrentPage(numberCurrentPage) //отправляем в store кол-во номер текущей страницы
-    axiosInstance.get<DataUsersType>(`users?page=${numberCurrentPage}&count=${this.props.pageSize}`)
+    axiosInstance.get<DataType>(`users?page=${numberCurrentPage}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.setToggleIsFetch(false)
         this.props.setUsers(response.data.items) // отправляем в store users
@@ -82,8 +90,7 @@ const mapStateToProps = (state: StateType) => {
   }
 }
 
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
-(mapStateToProps, {
+export const UsersContainer = connect(mapStateToProps, {
   followUser, unFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetch,
 })(UsersApiContainer)
 

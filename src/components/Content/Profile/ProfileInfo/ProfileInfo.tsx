@@ -1,21 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './ProfileInfo.module.scss'
+import job from './../../../../images/job-logo.png'
+import {DataUserProfileType} from "../../../../Redux/profile-reducer";
+import {Preloader} from "../../../Сommon/Preloader/Preloader";
 
-export const ProfileInfo = (props: any) => {
+type PropsType = {
+  userProfile: DataUserProfileType
+}
+
+export const ProfileInfo = ({userProfile}: PropsType) => {
+  const [logo, setLogo] = useState(false)
+
+  const showLogo = () => {
+    setLogo(true)
+  }
+  const hideLogo = () => {
+    setLogo(false)
+  }
   return (
     <div className={styles.profileInfo}>
-      <div>
-        <img
-          src={
-            'https://v-thailand.com/wp-content/uploads/2017/12/Slonyi-v-Tailande-2.jpg'
-          }
-          alt={'img'}
-        />
+      <p>{userProfile.fullName}</p>
+      <div className={styles.logoContainer}>
+        {userProfile.photos ?
+          <>
+            <img className={styles.logoSmall} src={userProfile.photos.small} onClick={showLogo} alt={'img'}/>
+            {userProfile.lookingForAJob && <img className={styles.job} src={job} onClick={showLogo} alt={'img'}/>}
+          </>
+          : <Preloader/>}
       </div>
-      <div className={styles.description}>
-        ava + description
-      </div>
-
+      {userProfile.photos && logo ?
+        <img className={styles.logoLarge} src={userProfile.photos.large} onClick={hideLogo} alt={'img'}/> : ''}
     </div>
   )
 }

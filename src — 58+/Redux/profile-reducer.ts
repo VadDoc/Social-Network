@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import img from "../images/ava.png";
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
+import {DataUserProfileType} from "../components/Content/Profile/ProfileContainer";
 
 export type PostItemType = {
   id: string
@@ -9,29 +10,6 @@ export type PostItemType = {
   message: string
   likesCount: number
 }
-
-export type DataUserProfileType = {
-  aboutMe: null | string
-  contacts: {
-    facebook: null | string
-    website: null | string
-    vk: null | string
-    twitter: null | string
-    instagram: null | string
-    "youtube": null | string
-    github: null | string
-    mainLink: null | string
-  }
-  lookingForAJob: boolean
-  lookingForAJobDescription: null | string
-  "fullName": null | string
-  "userId": number
-  "photos": {
-    "small": string | undefined
-    "large": string | undefined
-  }
-}
-
 export type ProfilePageType = typeof initialState
 
 const ADD_POST = 'ADD_POST'
@@ -44,7 +22,7 @@ const initialState = {
     {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
   ] as Array<PostItemType>,
   newPostText: '',
-  userProfile: {} as DataUserProfileType
+  userProfile: {}
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
