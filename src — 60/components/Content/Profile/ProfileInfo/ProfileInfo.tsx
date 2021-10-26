@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import styles from './ProfileInfo.module.scss'
 import job from './../../../../images/job-logo.png'
-import avatar from './../../../../images/ava.png'
 import {DataUserProfileType} from "../../../../Redux/profile-reducer";
 import {Preloader} from "../../../Сommon/Preloader/Preloader";
 
@@ -24,12 +23,7 @@ export const ProfileInfo = ({userProfile}: PropsType) => {
       <div className={styles.logoContainer}>
         {userProfile.photos ?
           <>
-            <img
-              className={styles.logoSmall}
-              src={userProfile.photos.small ? userProfile.photos.small : avatar}
-              onClick={showLogo}
-              alt={'avatar'}
-            />
+            <img className={styles.logoSmall} src={userProfile.photos.small} onClick={showLogo} alt={'img'}/>
             {userProfile.lookingForAJob && <img className={styles.job} src={job} onClick={showLogo} alt={'img'}/>}
           </>
           : <Preloader/>}

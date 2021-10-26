@@ -40,6 +40,7 @@ class ProfileApiContainer extends React.Component<PropsType> {
     return (
       <div className={styles.profile}>
         <Profile {...this.props} userProfile={this.props.userProfile}/>
+        {/*<Profile/>*/}
       </div>
     )
   }
