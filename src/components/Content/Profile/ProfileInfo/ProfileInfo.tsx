@@ -12,10 +12,10 @@ type PropsType = {
 export const ProfileInfo = ({userProfile}: PropsType) => {
   const [logo, setLogo] = useState(false)
 
-  const showLogo = () => {
+  const showAvatar = () => {
     setLogo(true)
   }
-  const hideLogo = () => {
+  const hideAvatar = () => {
     setLogo(false)
   }
   return (
@@ -27,15 +27,26 @@ export const ProfileInfo = ({userProfile}: PropsType) => {
             <img
               className={styles.logoSmall}
               src={userProfile.photos.small ? userProfile.photos.small : avatar}
-              onClick={showLogo}
+              onClick={userProfile.photos.small ? showAvatar : ()=>{}}
               alt={'avatar'}
             />
-            {userProfile.lookingForAJob && <img className={styles.job} src={job} onClick={showLogo} alt={'img'}/>}
+            {userProfile.lookingForAJob &&
+            <img className={styles.job}
+                 src={job}
+                 onClick={userProfile.photos.small ? showAvatar : ()=>{}}
+                 alt={'avatar'}/>
+            }
           </>
           : <Preloader/>}
       </div>
       {userProfile.photos && logo ?
-        <img className={styles.logoLarge} src={userProfile.photos.large} onClick={hideLogo} alt={'img'}/> : ''}
+        <img
+          className={styles.logoLarge}
+          src={userProfile.photos.large}
+          onClick={userProfile.photos.large ? hideAvatar : ()=>{} }
+          alt={'avatar'}
+        /> :
+        ''}
     </div>
   )
 }
