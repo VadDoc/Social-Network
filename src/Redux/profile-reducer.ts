@@ -9,7 +9,6 @@ export type PostItemType = {
   message: string
   likesCount: number
 }
-
 export type DataUserProfileType = {
   aboutMe: null | string
   contacts: {
@@ -31,7 +30,6 @@ export type DataUserProfileType = {
     "large": string | undefined
   }
 }
-
 export type ProfilePageType = typeof initialState
 
 const ADD_POST = 'ADD_POST'
@@ -50,12 +48,6 @@ const initialState = {
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
   switch (action.type) {
     case ADD_POST:
-      const newPost: PostItemType = {
-        id: v1(),
-        img: img,
-        message: state.newPostText,
-        likesCount: 0
-      }
       return {
         ...state,
         newPostText: '',

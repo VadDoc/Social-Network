@@ -14,7 +14,7 @@ type PropsType = {
 }
 
 export const Users = (props: PropsType) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+  // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
   let numberPages = []
   // for (let i = 1; i <= pagesCount; i++) {
   for (let i = 1; i <= 16; i++) {
@@ -25,6 +25,7 @@ export const Users = (props: PropsType) => {
       <div className={styles.numberPages}>
         {numberPages.map(num => (
           <div
+            key={num}
             className={props.currentPage === num ? `${styles.numberPage} ${styles.selected}` : styles.numberPage}
             onClick={() => {
               props.onChangedPage(num)
