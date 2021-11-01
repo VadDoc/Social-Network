@@ -20,6 +20,7 @@ class UsersApiContainer extends React.Component <UsersPropsType> {
     this.props.setToggleIsFetch(true) //меняем статус preloader
     axiosInstance.get<DataUsersType>(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
+        debugger
         this.props.setToggleIsFetch(false)
         this.props.setUsers(response.data.items) // отправляем в store users
         this.props.setTotalUsersCount(response.data.totalCount) //отправляем в store кол-во users

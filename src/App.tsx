@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.scss'
-import {Header} from './components/Header/Header'
 import {Content} from './components/Content/Content'
 import {Navbar, NavigationType} from './components/Navbar/Navbar'
 import {Footer} from './components/Footer/Footer'
@@ -9,6 +8,7 @@ import {DialogPropsType} from "./components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "./components/Content/Dialogs/Message/Message";
 import {PostItemType} from "./Redux/profile-reducer";
 import {ActionsType} from "./Redux/redux-store";
+import {ConnectedHeaderContainer} from "./components/Header/HeaderContainer";
 
 type AppPropsType = {
   state: {
@@ -35,7 +35,7 @@ const App = (props: AppPropsType) => {
   return (
     <HashRouter>
       <div className="app">
-        <Header/>
+        <ConnectedHeaderContainer/>
         <Navbar navBar={props.state.navBar}/>
         <Content
           profilePage={props.state.profilePage}

@@ -1,8 +1,10 @@
 .header {
   display: flex;
+  justify-content: space-between;
   background-color: rgb(2, 59, 145);
-  justify-content: center;
   align-items: center;
+  padding-left: 10%;
+
 
   img {
     height: 90px;
@@ -11,8 +13,16 @@
 
   h1 {
     color: goldenrod;
-    font-family: Teko;
+    font-family: Teko, serif;
     font-size: 55px;
+  }
+
+  .loginBlock {
+    color: white;
+
+    a {
+      color: white;
+    }
   }
 
 }

@@ -1,12 +1,14 @@
 .nav {
   background-color: rgb(3, 75, 182);
-  padding: 30px 40px;
+  //padding: 30px 40px;
+  //padding: 40px 80px 40px 10%;
+  padding-left: 40%;
   min-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
 
   a {
-    font-family: Teko;
+    font-family: Teko, serif;
     color: white;
     font-weight: bold;
     font-size: 40px;

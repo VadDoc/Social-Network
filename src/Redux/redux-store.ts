@@ -6,6 +6,7 @@ import {musicReducer} from "./music-reduсer";
 import {settingsReducer} from "./settings-reduсer";
 import {newsReducer} from "./news-reduсer";
 import {usersReducer, UsersReducerActionsType} from "./users-reduсer";
+import {authReducer} from "./authReducer";
 
 export type StateType = ReturnType<typeof rootReducer>
 export type ActionsType = ProfileReducerActionsType | DialogsReducerActionsType | UsersReducerActionsType
@@ -17,7 +18,8 @@ let rootReducer = combineReducers({
   navBar: navbarReducer,
   newsPage: newsReducer,
   musicPage: musicReducer,
-  settingsPage: settingsReducer
+  settingsPage: settingsReducer,
+  auth: authReducer
 })
 
 export let store = createStore(rootReducer)
