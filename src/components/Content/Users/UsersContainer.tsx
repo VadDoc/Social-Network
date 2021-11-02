@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {StateType} from "../../../Redux/redux-store";
 import {
   followUser, setCurrentPage, setToggleIsFetch, setTotalUsersCount,
-  setUsers, unFollowUser, UserType
+  setUsers, toggleFollowingProgress, unFollowUser, UserType
 } from "../../../Redux/users-reduсer";
 import React from "react";
 import {Users} from "./Users";
@@ -15,6 +15,7 @@ type MapStateToPropsType = {
   totalUsersCount: number
   currentPage: number
   isFetching: boolean
+  followingInProgress: number[]
 }
 type MapDispatchToPropsType = {
   followUser: (userID: number) => void
@@ -23,6 +24,7 @@ type MapDispatchToPropsType = {
   setCurrentPage: (numberCurrentPage: number) => void
   setTotalUsersCount: (totalUsersCount: number) => void
   setToggleIsFetch: (isFetching: boolean) => void
+  toggleFollowingProgress: (userId: number, isFetching: boolean) => void
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -58,6 +60,8 @@ class UsersApiContainer extends React.Component <UsersPropsType> {
             followUser={this.props.followUser}
             unFollowUser={this.props.unFollowUser}
             onChangedPage={this.onChangedPage}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            followingInProgress={this.props.followingInProgress}
           />}
       </>
     )
@@ -71,12 +75,14 @@ const mapStateToProps = (state: StateType) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   }
 }
 
+//connect из actionCreators создаст колбеки и вернет с теми же названиями
 export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
 (mapStateToProps, {
-  followUser, unFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetch,
+  followUser, unFollowUser, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetch, toggleFollowingProgress
 })(UsersApiContainer)
 
 

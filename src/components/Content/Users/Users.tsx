@@ -8,9 +8,11 @@ type PropsType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
+  followingInProgress: number[]
   followUser: (userID: number) => void
   unFollowUser: (userID: number) => void
   onChangedPage: (numberCurrentPage: number) => void
+  toggleFollowingProgress: (userId: number, isFetching: boolean) => void
 }
 
 export const Users = (props: PropsType) => {
@@ -46,6 +48,8 @@ export const Users = (props: PropsType) => {
           followed={user.followed}
           followUser={props.followUser}
           unFollowUser={props.unFollowUser}
+          toggleFollowingProgress={props.toggleFollowingProgress}
+          followingInProgress={props.followingInProgress}
         />
       ))}
     </div>
