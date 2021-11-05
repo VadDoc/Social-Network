@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Social-Network/static/css/main.4c0faed1.chunk.css",
-    "main.js": "/Social-Network/static/js/main.17fdb30e.chunk.js",
-    "main.js.map": "/Social-Network/static/js/main.17fdb30e.chunk.js.map",
-    "runtime-main.js": "/Social-Network/static/js/runtime-main.a16e88c0.js",
-    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.a16e88c0.js.map",
-    "static/js/2.cbe67e68.chunk.js": "/Social-Network/static/js/2.cbe67e68.chunk.js",
-    "static/js/2.cbe67e68.chunk.js.map": "/Social-Network/static/js/2.cbe67e68.chunk.js.map",
-    "static/js/3.308b613d.chunk.js": "/Social-Network/static/js/3.308b613d.chunk.js",
-    "static/js/3.308b613d.chunk.js.map": "/Social-Network/static/js/3.308b613d.chunk.js.map",
+    "main.css": "/Social-Network/static/css/main.34b32850.chunk.css",
+    "main.js": "/Social-Network/static/js/main.c1700ce0.chunk.js",
+    "main.js.map": "/Social-Network/static/js/main.c1700ce0.chunk.js.map",
+    "runtime-main.js": "/Social-Network/static/js/runtime-main.399d76fa.js",
+    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.399d76fa.js.map",
+    "static/js/2.a78a7c1a.chunk.js": "/Social-Network/static/js/2.a78a7c1a.chunk.js",
+    "static/js/2.a78a7c1a.chunk.js.map": "/Social-Network/static/js/2.a78a7c1a.chunk.js.map",
+    "static/js/3.2de5869e.chunk.js": "/Social-Network/static/js/3.2de5869e.chunk.js",
+    "static/js/3.2de5869e.chunk.js.map": "/Social-Network/static/js/3.2de5869e.chunk.js.map",
     "index.html": "/Social-Network/index.html",
-    "static/css/main.4c0faed1.chunk.css.map": "/Social-Network/static/css/main.4c0faed1.chunk.css.map",
-    "static/js/2.cbe67e68.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.cbe67e68.chunk.js.LICENSE.txt",
+    "static/css/main.34b32850.chunk.css.map": "/Social-Network/static/css/main.34b32850.chunk.css.map",
+    "static/js/2.a78a7c1a.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.a78a7c1a.chunk.js.LICENSE.txt",
     "static/media/Spinner-1s-273px.2072535f.svg": "/Social-Network/static/media/Spinner-1s-273px.2072535f.svg",
     "static/media/App.scss": "/Social-Network/static/media/Teko-Regular.7a95ca68.ttf",
     "static/media/ava.28e44cb7.png": "/Social-Network/static/media/ava.28e44cb7.png",
@@ -21,9 +21,9 @@
     "static/media/job-logo.b290acaf.png": "/Social-Network/static/media/job-logo.b290acaf.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a16e88c0.js",
-    "static/js/2.cbe67e68.chunk.js",
-    "static/css/main.4c0faed1.chunk.css",
-    "static/js/main.17fdb30e.chunk.js"
+    "static/js/runtime-main.399d76fa.js",
+    "static/js/2.a78a7c1a.chunk.js",
+    "static/css/main.34b32850.chunk.css",
+    "static/js/main.c1700ce0.chunk.js"
   ]
 }
