@@ -2,6 +2,8 @@ import {v1} from "uuid";
 import img from "../images/ava.png";
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
+import {Dispatch} from "redux";
+import {api} from "../api/api";
 
 export type PostItemType = {
   id: string
@@ -31,6 +33,11 @@ export type DataUserProfileType = {
   }
 }
 export type ProfilePageType = typeof initialState
+
+export type ProfileReducerActionsType = AddPostActionType | OnChangePostActionType | SetUserProfileActionType
+type AddPostActionType = ReturnType<typeof addPostAC>
+type OnChangePostActionType = ReturnType<typeof onChangePostAC>
+type SetUserProfileActionType = ReturnType<typeof setUserProfile>
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
@@ -68,11 +75,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
   }
 }
 
-export type ProfileReducerActionsType = AddPostActionType | OnChangePostActionType | SetUserProfileActionType
-type AddPostActionType = ReturnType<typeof addPostAC>
-type OnChangePostActionType = ReturnType<typeof onChangePostAC>
-type SetUserProfileActionType = ReturnType<typeof setUserProfile>
-
 export const addPostAC = () => {
   return {
     type: ADD_POST
@@ -84,8 +86,16 @@ export const onChangePostAC = (post: string) => {
     post: post
   } as const
 }
-export const setUserProfile = (dataUserProfile: DataUserProfileType) => {
+const setUserProfile = (dataUserProfile: DataUserProfileType) => {
   return {
     type: SET_USER_PROFILE, dataUserProfile
   } as const
+}
+
+export const getUserProfilePage = (userId: string) => {
+  return (dispatch: Dispatch) => {
+    api.getUserProfile(userId).then(response => {
+      dispatch(setUserProfile(response.data)) // отправляем в store userProfile
+    })
+  }
 }

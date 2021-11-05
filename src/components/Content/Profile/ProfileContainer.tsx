@@ -1,19 +1,11 @@
 import React from 'react'
 import styles from './Profile.module.scss'
 import {Profile} from "./Profile";
-import {axiosInstance} from "../../Сommon/AxiosInstance/axiosInstance";
 import {connect} from "react-redux";
 import {StateType} from "../../../Redux/redux-store";
-import {DataUserProfileType, setUserProfile} from "../../../Redux/profile-reducer";
+import {DataUserProfileType, getUserProfilePage} from "../../../Redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
-type MapStateToPropsType = {
-  userProfile: DataUserProfileType
-}
-type MapDispatchToPropsType = {
-  setUserProfile: (dataUserProfile: DataUserProfileType) => void
-}
-type ProfileApiPropsType = MapStateToPropsType & MapDispatchToPropsType
 //типизация withRouter
 //https://stackoverflow.com/questions/48219432/react-router-typescript-errors-on-withrouter-after-updating-version
 type PathParamsType = {
@@ -21,9 +13,18 @@ type PathParamsType = {
 }
 type PropsType = RouteComponentProps<PathParamsType> & ProfileApiPropsType
 
+type MapStateToPropsType = {
+  userProfile: DataUserProfileType
+}
+type MapDispatchToPropsType = {
+  getUserProfilePage: (userId: string) => void
+}
+type ProfileApiPropsType = MapStateToPropsType & MapDispatchToPropsType
+
 class ProfileApiContainer extends React.Component<PropsType> {
 
   componentDidMount() {
+    //читаем из URL userId
     let userId = this.props.match.params.userId
     // console.log("ProfileApiContainer Props: ", this.props)
     //если profile/
@@ -31,10 +32,7 @@ class ProfileApiContainer extends React.Component<PropsType> {
       userId = '2'
       // userId = '20056'
     }
-    axiosInstance.get<DataUserProfileType>(`profile/${userId}`)
-      .then(response => {
-        this.props.setUserProfile(response.data) // отправляем в store userProfile
-      })
+    this.props.getUserProfilePage(userId)
   }
 
   render() {
@@ -58,4 +56,4 @@ const WithRouterProfileApiContainer = withRouter(ProfileApiContainer)
 //типизация connect: MapStateToPropsType + MapDispatchToPropsType + StateType + объект пропсов,
 // которые передается в компоненту ProfileContainer в Content.tsx
 export const ConnectedProfileContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
-(mapStateToProps, {setUserProfile})(WithRouterProfileApiContainer)
+(mapStateToProps, {getUserProfilePage})(WithRouterProfileApiContainer)

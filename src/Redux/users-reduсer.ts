@@ -93,13 +93,13 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersR
   }
 }
 
-export const followUser = (userID: number) => {
+const followUser = (userID: number) => {
   return {
     type: FOLLOW_USER,
     userID
   } as const
 }
-export const unFollowUser = (userID: number) => {
+const unFollowUser = (userID: number) => {
   return {
     type: UNFOLLOW_USER,
     userID
@@ -123,7 +123,7 @@ export const setTotalUsersCount = (totalUsersCount: number) => {
     totalUsersCount
   } as const
 }
-export const setToggleIsFetch = (isFetching: boolean) => {
+const setToggleIsFetch = (isFetching: boolean) => {
   return {
     type: TOGGLE_IS_FETCHING, isFetching
   } as const
@@ -134,7 +134,7 @@ export const toggleFollowingProgress = (userId: number, isFetching: boolean) => 
   } as const
 }
 
-//создаем ThunkCreator
+//создаем ThunkCreators
 export const getUsers = (currentPage: number,pageSize: number) => {
   return (dispatch: Dispatch) => {
   dispatch(setToggleIsFetch(true)) //меняем статус preloader
@@ -145,7 +145,7 @@ export const getUsers = (currentPage: number,pageSize: number) => {
   })
 }}
 
-export const getUsersOnChange = (numberCurrentPage: number,pageSize: number) => {
+export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) => {
   return (dispatch: Dispatch) => {
     dispatch(setToggleIsFetch(true))  //меняем статус preloader
     dispatch(setCurrentPage(numberCurrentPage)) //отправляем в store кол-во номер текущей страницы
