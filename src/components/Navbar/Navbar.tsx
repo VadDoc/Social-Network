@@ -14,10 +14,12 @@ type NavBarPropsType = {
   }
 }
 
-export const Navbar = (props:NavBarPropsType) => {
+export const Navbar = (props: NavBarPropsType) => {
+  
   const navLinkItems = props.navBar.navigation.map(item => (
     <NavLink key={item.id} to={item.link} activeClassName={styles.active}>{item.pageName}</NavLink>
   ))
+
     return (
         <nav className={styles.nav}>
           {navLinkItems}

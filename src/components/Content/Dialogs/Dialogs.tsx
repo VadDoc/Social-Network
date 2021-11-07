@@ -4,8 +4,9 @@ import {Message, MessageType} from "./Message/Message";
 import {Dialog, DialogPropsType} from "./Dialog/Dialog";
 import {AddMessage} from "./AddMessage/AddMessage";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
-export const Dialogs: React.FC<DialogsPropsType> = ({messagesPage, onSendMessageClick, changeMessage, newDialogMessage}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({isAuth, messagesPage, onSendMessageClick, changeMessage, newDialogMessage}) => {
   const dialogsElements = messagesPage.dialogsData.map((elem: DialogPropsType) => (
     <Dialog
       key={elem.id}
@@ -21,6 +22,8 @@ export const Dialogs: React.FC<DialogsPropsType> = ({messagesPage, onSendMessage
       id={elem.id}
     />
   ))
+
+  if(!isAuth) return <Redirect to='/login' />
 
   return (
     <div className={styles.dialogs}>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {UserType} from "../Redux/users-reduсer";
+import {DataUserProfileType} from "../Redux/profile-reducer";
 
 type DataUsersType = {
   error: null | string
@@ -35,6 +36,12 @@ const axiosInstance = axios.create({
 })
 
 export const api = {
+  getUserProfile(userId: string) {
+    return (
+      axiosInstance.get<DataUserProfileType>(`profile/${userId}`)
+    )
+  },
+
   getUsers(currentPage: number, pageSize: number) {
     return (
       axiosInstance.get<DataUsersType>(`users?page=${currentPage}&count=${pageSize}`)

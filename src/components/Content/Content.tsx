@@ -11,6 +11,7 @@ import {DialogsContainer} from "./Dialogs/DialogsContainer";
 import {PostItemType} from "../../Redux/profile-reducer";
 import {UsersContainer} from "./Users/UsersContainer";
 import {ConnectedProfileContainer} from "./Profile/ProfileContainer";
+import {Login} from "./Login/Login";
 
 type ContentPropsType = {
   profilePage: {
@@ -38,6 +39,9 @@ export const Content = (props: ContentPropsType) => {
       <Route path="/music" render={() => <Music/>}/>
       <Route path="/settings" render={() => <Settings/>}/>
       <Redirect from='/' to='/profile' />
+
+      <Route path="/login" render={() => <Login/>}/>
+
     </main>
   )
 }
