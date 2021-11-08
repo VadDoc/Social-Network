@@ -4,7 +4,8 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {StateType} from "../../../Redux/redux-store";
 import {DataUserProfileType, getUserProfilePage} from "../../../Redux/profile-reducer";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 //типизация withRouter
 //https://stackoverflow.com/questions/48219432/react-router-typescript-errors-on-withrouter-after-updating-version
@@ -15,7 +16,6 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileApiPropsType
 
 type MapStateToPropsType = {
   userProfile: DataUserProfileType
-  isAuth: boolean
 }
 type MapDispatchToPropsType = {
   getUserProfilePage: (userId: string) => void
@@ -37,7 +37,6 @@ class ProfileApiContainer extends React.Component<PropsType> {
   }
 
   render() {
-    if(!this.props.isAuth) return <Redirect to='/login' />
     return (
       <div className={styles.profile}>
         <Profile {...this.props} userProfile={this.props.userProfile}/>
@@ -47,10 +46,8 @@ class ProfileApiContainer extends React.Component<PropsType> {
 }
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
-
   return {
     userProfile: state.profilePage.userProfile,
-    isAuth: state.auth.isAuth
   }
 }
 
@@ -59,5 +56,5 @@ const WithRouterProfileApiContainer = withRouter(ProfileApiContainer)
 //оборачиваем WithRouterProfileApiContainer в ConnectedProfileContainer
 //типизация connect: MapStateToPropsType + MapDispatchToPropsType + StateType + объект пропсов,
 // которые передается в компоненту ProfileContainer в Content.tsx
-export const ConnectedProfileContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
-(mapStateToProps, {getUserProfilePage})(WithRouterProfileApiContainer)
+export const ConnectedProfileContainer = withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
+(mapStateToProps, {getUserProfilePage})(WithRouterProfileApiContainer))
