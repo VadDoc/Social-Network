@@ -6,7 +6,6 @@ import {StateType} from "../../../Redux/redux-store";
 import {DataUserProfileType, getUserProfilePage} from "../../../Redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
-import {compose} from "redux";
 
 //типизация withRouter
 //https://stackoverflow.com/questions/48219432/react-router-typescript-errors-on-withrouter-after-updating-version
@@ -52,12 +51,10 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
   }
 }
 
+//оборачиваем ProfileApiContainer в WithRouterProfileApiContainer
+const WithRouterProfileApiContainer = withRouter(ProfileApiContainer)
+//оборачиваем WithRouterProfileApiContainer в ConnectedProfileContainer
 //типизация connect: MapStateToPropsType + MapDispatchToPropsType + StateType + объект пропсов,
 // которые передается в компоненту ProfileContainer в Content.tsx
-//c помощью compose оборачиваем последовательно ProfileApiContainer в 3 хока
-export const ProfileComposedContainers = compose<React.ComponentType>(
-  withAuthRedirect,
-  connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(
-    mapStateToProps, {getUserProfilePage}),
-  withRouter
-)(ProfileApiContainer)
+export const ConnectedProfileContainer = withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
+(mapStateToProps, {getUserProfilePage})(WithRouterProfileApiContainer))

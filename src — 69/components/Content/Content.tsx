@@ -7,10 +7,10 @@ import {Settings} from "./Settings/Settings";
 import {MessageType} from "./Dialogs/Message/Message";
 import {DialogPropsType} from "./Dialogs/Dialog/Dialog";
 import {ActionsType} from "../../Redux/redux-store";
-import {DialogsComposedContainers} from "./Dialogs/DialogsContainer";
+import {DialogsContainer} from "./Dialogs/DialogsContainer";
 import {PostItemType} from "../../Redux/profile-reducer";
 import {UsersContainer} from "./Users/UsersContainer";
-import {ProfileComposedContainers} from "./Profile/ProfileContainer";
+import {ConnectedProfileContainer} from "./Profile/ProfileContainer";
 import {Login} from "./Login/Login";
 
 type ContentPropsType = {
@@ -32,8 +32,8 @@ type ContentPropsType = {
 export const Content = (props: ContentPropsType) => {
   return (
     <main className={styles.content}>
-      <Route path="/profile/:userId?" render={() => <ProfileComposedContainers/>}/>
-      <Route path="/dialogs" render={() => <DialogsComposedContainers/>}/>
+      <Route path="/profile/:userId?" render={() => <ConnectedProfileContainer/>}/>
+      <Route path="/dialogs" render={() => <DialogsContainer/>}/>
       <Route path="/users" render={() => <UsersContainer/>}/>
       <Route path="/news" render={() => <News/>}/>
       <Route path="/music" render={() => <Music/>}/>
