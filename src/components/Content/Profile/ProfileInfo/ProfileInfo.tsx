@@ -8,10 +8,9 @@ import facebook from './../../../../images/facebook.png'
 import instagram from './../../../../images/instagram.png'
 import twitter from './../../../../images/twitter.png'
 import vk from './../../../../images/vk.png'
-
-
 import {DataUserProfileType} from "../../../../Redux/profile-reducer";
 import {Preloader} from "../../../Сommon/Preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 
 type PropsType = {
   userProfile: DataUserProfileType
@@ -73,8 +72,8 @@ export const ProfileInfo = ({userProfile}: PropsType) => {
           {contacts.github && <a href={`${contacts.github}`}><img src={github} alt={'github'}/></a>}
         </>
         }
-
       </div>
+      <ProfileStatus status={'Hello, my friends'}/>
     </div>
   )
 }
