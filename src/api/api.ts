@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {UserType} from "../Redux/users-reduсer";
 import {DataUserProfileType} from "../Redux/profile-reducer";
 
@@ -23,6 +23,13 @@ type DataAuthType = {
   resultCode: number
 }
 
+type DataPutUserProfileStatusType = {
+  data: {}
+  fieldsErrors: []
+  messages: []
+  resultCode: 0 | 1
+}
+
 //DAL - Data Access Layer
 
 //базовые настройки запроса в axios
@@ -35,13 +42,7 @@ const axiosInstance = axios.create({
   }
 })
 
-export const api = {
-  getUserProfile(userId: string) {
-    return (
-      axiosInstance.get<DataUserProfileType>(`profile/${userId}`)
-    )
-  },
-
+export const userApi = {
   getUsers(currentPage: number, pageSize: number) {
     return (
       axiosInstance.get<DataUsersType>(`users?page=${currentPage}&count=${pageSize}`)
@@ -70,3 +71,25 @@ export const api = {
     )
   }
 }
+
+export const profileApi = {
+  getUserProfile(userId: string) {
+    return (
+      axiosInstance.get<DataUserProfileType>(`profile/${userId}`)
+    )
+  },
+
+  getUserProfileStatus(userId: string) {
+    return (
+      axiosInstance.get<string>(`profile/status/${userId}`)
+    )
+  },
+
+    updateUserProfileStatus(userStatus: string) {
+    return (
+      //типизация put запроса Axios: давим put и смотрим там, структуру для типизации
+      axiosInstance.put<{status: string}, AxiosResponse<DataPutUserProfileStatusType>>(`profile/status`, {status: userStatus})
+    )
+  },
+}
+

@@ -3,7 +3,7 @@ import img from "../images/ava.png";
 import img1 from "../images/ava1.jpeg";
 import img2 from "../images/ava2.jpeg";
 import {Dispatch} from "redux";
-import {api} from "../api/api";
+import {profileApi} from "../api/api";
 
 export type PostItemType = {
   id: string
@@ -34,14 +34,24 @@ export type DataUserProfileType = {
 }
 export type ProfilePageType = typeof initialState
 
-export type ProfileReducerActionsType = AddPostActionType | OnChangePostActionType | SetUserProfileActionType
+export type ProfileReducerActionsType =
+  AddPostActionType |
+  OnChangePostActionType |
+  GetUserProfileActionType |
+  GetUserProfileStatusActionType |
+  UpdateUserProfileStatusActionType
 type AddPostActionType = ReturnType<typeof addPostAC>
 type OnChangePostActionType = ReturnType<typeof onChangePostAC>
-type SetUserProfileActionType = ReturnType<typeof setUserProfile>
+type GetUserProfileActionType = ReturnType<typeof getUserProfile>
+type GetUserProfileStatusActionType = ReturnType<typeof getUserProfileStatus>
+type UpdateUserProfileStatusActionType = ReturnType<typeof updateUserProfileStatus>
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const GET_USER_PROFILE = 'GET_USER_PROFILE'
+const GET_USER_PROFILE_STATUS = 'GET_USER_PROFILE_STATUS'
+const UPDATE_USER_PROFILE_STATUS = 'UPDATE_USER_PROFILE_STATUS'
+
 
 const initialState = {
   myPostsData: [
@@ -49,7 +59,8 @@ const initialState = {
     {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
   ] as Array<PostItemType>,
   newPostText: '',
-  userProfile: {} as DataUserProfileType
+  userProfile: {} as DataUserProfileType,
+  userStatus: ''
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
@@ -65,10 +76,20 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         ...state,
         newPostText: action.post
       }
-    case SET_USER_PROFILE:
+    case GET_USER_PROFILE:
       return {
         ...state,
         userProfile: action.dataUserProfile
+      }
+    case GET_USER_PROFILE_STATUS:
+      return {
+        ...state,
+        userStatus: action.userId
+      }
+    case UPDATE_USER_PROFILE_STATUS:
+      return {
+        ...state,
+        userStatus: action.userStatus
       }
     default:
       return state
@@ -86,16 +107,50 @@ export const onChangePostAC = (post: string) => {
     post: post
   } as const
 }
-const setUserProfile = (dataUserProfile: DataUserProfileType) => {
+const getUserProfile = (dataUserProfile: DataUserProfileType) => {
   return {
-    type: SET_USER_PROFILE, dataUserProfile
+    type: GET_USER_PROFILE, dataUserProfile
   } as const
 }
 
+const getUserProfileStatus = (userId: string) => {
+  return {
+    type: GET_USER_PROFILE_STATUS, userId
+  } as const
+}
+
+const updateUserProfileStatus = (userStatus: string) => {
+  return {
+    type: UPDATE_USER_PROFILE_STATUS, userStatus
+  } as const
+}
+//THUNKS
 export const getUserProfilePage = (userId: string) => {
   return (dispatch: Dispatch) => {
-    api.getUserProfile(userId).then(response => {
-      dispatch(setUserProfile(response.data)) // отправляем в store userProfile
+    profileApi.getUserProfile(userId).then(response => {
+      dispatch(getUserProfile(response.data)) // отправляем в store userProfile
+    })
+  }
+}
+
+export const getUserProfilePageStatus = (userId: string) => {
+  return (dispatch: Dispatch) => {
+    profileApi.getUserProfileStatus(userId).then(response => {
+      // debugger
+
+      dispatch(getUserProfileStatus(response.data))
+    })
+  }
+}
+
+export const updateUserProfilePageStatus = (userStatus: string) => {
+  return (dispatch: Dispatch) => {
+    profileApi.updateUserProfileStatus(userStatus).then(response => {
+      // debugger
+      if (response.data.resultCode === 0) {
+        // dispatch(updateUserProfileStatus(response.data))
+        dispatch(updateUserProfileStatus(userStatus))
+      }
     })
   }
 }

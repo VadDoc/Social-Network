@@ -1,36 +1,47 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent} from 'react'
 import styles from './ProfileStatus.module.scss'
 
 type PropsType = {
   status: string
+  updateStatus: (userStatus: string) => void
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
   state = {
-    editMode: false
+    editMode: false,
+    status: this.props.status
   }
 
-  //используем стрелочную, чтобы не потерять контекст вызова, не нужно байндить activateEditMode.bind(this)
+  //используем стрелочную, чтобы не потерять контекст во время вызова, не нужно байндить activateEditMode.bind(this)
   activateEditMode = () => {
     this.setState({editMode: true})
   }
 
   deactivateEditMode = () => {
     this.setState({editMode: false})
+    this.props.updateStatus(this.state.status)
+  }
+
+  onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({status: e.currentTarget.value})
   }
 
   render() {
-    let {status} = this.props;
     return (
       <div className={styles.profileStatus}>
         {!this.state.editMode &&
         <div>
-          <span onDoubleClick={this.activateEditMode}>{status}</span>
+          <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Set your status'}</span>
         </div>
         }
         {this.state.editMode &&
         <div>
-          <input onBlur={this.deactivateEditMode} value={status} autoFocus/>
+          <input
+            onBlur={this.deactivateEditMode}
+            onChange={this.onStatusChange}
+            value={this.state.status}
+            autoFocus
+          />
         </div>
         }
       </div>

@@ -14,9 +14,11 @@ import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 
 type PropsType = {
   userProfile: DataUserProfileType
+  userStatus: string
+  updateStatus: (userStatus: string) => void
 }
 
-export const ProfileInfo = ({userProfile}: PropsType) => {
+export const ProfileInfo = ({userProfile, userStatus, updateStatus}: PropsType) => {
   const [logo, setLogo] = useState(false)
   const contacts = userProfile.contacts
 
@@ -73,7 +75,7 @@ export const ProfileInfo = ({userProfile}: PropsType) => {
         </>
         }
       </div>
-      <ProfileStatus status={'Hello, my friends'}/>
+      <ProfileStatus status={userStatus} updateStatus={updateStatus}/>
     </div>
   )
 }

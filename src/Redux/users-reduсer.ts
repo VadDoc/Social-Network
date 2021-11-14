@@ -1,5 +1,5 @@
-import {api} from "../api/api";
 import {Dispatch} from "redux";
+import {userApi} from "../api/api";
 
 export type UserType = {
   name: string
@@ -138,7 +138,7 @@ export const toggleFollowingProgress = (userId: number, isFetching: boolean) => 
 export const getUsers = (currentPage: number,pageSize: number) => {
   return (dispatch: Dispatch) => {
   dispatch(setToggleIsFetch(true)) //меняем статус preloader
-  api.getUsers(currentPage, pageSize).then(data => {
+    userApi.getUsers(currentPage, pageSize).then(data => {
     dispatch(setToggleIsFetch(false))
     dispatch(setUsers(data.items)) // отправляем в store users
     dispatch(setTotalUsersCount(data.totalCount)) //отправляем в store кол-во users
@@ -149,7 +149,7 @@ export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) =>
   return (dispatch: Dispatch) => {
     dispatch(setToggleIsFetch(true))  //меняем статус preloader
     dispatch(setCurrentPage(numberCurrentPage)) //отправляем в store кол-во номер текущей страницы
-    api.getUsers(numberCurrentPage, pageSize).then(data => {
+    userApi.getUsers(numberCurrentPage, pageSize).then(data => {
       dispatch(setToggleIsFetch(false))
       dispatch(setUsers(data.items)) // отправляем в store users
     })
@@ -158,7 +158,7 @@ export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) =>
 export const follow = (userID: number) => {
   return (dispatch: Dispatch) => {
     dispatch(toggleFollowingProgress(userID, true)) //disable кнопку
-    api.followUser(userID)
+    userApi.followUser(userID)
       .then(data => {
         if (data.resultCode === 0) {
           dispatch(followUser(userID))
@@ -170,7 +170,7 @@ export const follow = (userID: number) => {
 export const unFollow = (userID: number) => {
   return (dispatch: Dispatch) => {
     dispatch(toggleFollowingProgress(userID, true)) //disable кнопку
-    api.unFollowUser(userID)
+    userApi.unFollowUser(userID)
       .then(data => {
         if (data.resultCode === 0) {
           dispatch(unFollowUser(userID))

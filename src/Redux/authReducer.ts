@@ -1,4 +1,4 @@
-import {api} from "../api/api";
+import {userApi} from "../api/api";
 import {Dispatch} from "redux";
 
 type StateType = {
@@ -40,7 +40,7 @@ const setAuthUserData = (userId: number, login: string, email: string) => {
 
 export const getAuthUserData = () => {
   return (dispatch: Dispatch) => {
-    api.setAuthUser().then(response => {
+    userApi.setAuthUser().then(response => {
       // если resultCode = 0 - залогинились, 1 -
       if(response.resultCode === 0) {
         const {id, login, email} = response.data
