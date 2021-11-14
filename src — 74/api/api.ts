@@ -87,7 +87,7 @@ export const profileApi = {
 
     updateUserProfileStatus(userStatus: string) {
     return (
-      //типизация put запроса Axios: давим put и смотрим там структуру для типизации DataPutUserProfileStatusType - что приходит в респонсе
+      //типизация put запроса Axios: давим put и смотрим там, структуру для типизации DataPutUserProfileStatusType - что приходит в респонсе
       axiosInstance.put<{status: string}, AxiosResponse<DataPutUserProfileStatusType>>(`profile/status`, {status: userStatus})
     )
   },

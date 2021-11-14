@@ -36,12 +36,15 @@ class ProfileApiContainer extends React.Component<PropsType> {
   componentDidMount() {
     //читаем из URL userId
     let userId = this.props.match.params.userId
+    // console.log("ProfileApiContainer Props: ", this.props)
+    //если profile/
     if (!userId) {
       userId = '2'
       // userId = '20056'
     }
     this.props.getUserProfilePage(userId)
     this.props.getUserProfilePageStatus(userId)
+    // this.props.updateUserProfilePageStatus(userStatus)
   }
 
   render() {
