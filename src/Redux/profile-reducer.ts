@@ -136,8 +136,6 @@ export const getUserProfilePage = (userId: string) => {
 export const getUserProfilePageStatus = (userId: string) => {
   return (dispatch: Dispatch) => {
     profileApi.getUserProfileStatus(userId).then(response => {
-      // debugger
-
       dispatch(getUserProfileStatus(response.data))
     })
   }
@@ -146,9 +144,7 @@ export const getUserProfilePageStatus = (userId: string) => {
 export const updateUserProfilePageStatus = (userStatus: string) => {
   return (dispatch: Dispatch) => {
     profileApi.updateUserProfileStatus(userStatus).then(response => {
-      // debugger
       if (response.data.resultCode === 0) {
-        // dispatch(updateUserProfileStatus(response.data))
         dispatch(updateUserProfileStatus(userStatus))
       }
     })
