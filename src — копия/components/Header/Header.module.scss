@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(2, 59, 145);
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+
+  img {
+    height: 90px;
+    padding-right: 50px;
+  }
+
+  h1 {
+    color: goldenrod;
+    font-family: Teko, serif;
+    font-size: 55px;
+  }
+
+  .loginBlock {
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+
+}

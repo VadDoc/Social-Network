@@ -23,8 +23,6 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileApiPropsType
 type MapStateToPropsType = {
   userProfile: DataUserProfileType
   userStatus: string
-  isAuth: boolean
-  authorizedUserId: string
 }
 type MapDispatchToPropsType = {
   getUserProfilePage: (userId: string) => void
@@ -40,9 +38,7 @@ class ProfileApiContainer extends React.Component<PropsType> {
     let userId = this.props.match.params.userId
     if (!userId) {
       // userId = '2'
-      // userId = '20056'
-      //если не выбран user - показываем собственный профиль
-      userId = this.props.authorizedUserId
+      userId = '20056'
     }
     this.props.getUserProfilePage(userId)
     this.props.getUserProfilePageStatus(userId)
@@ -64,9 +60,7 @@ class ProfileApiContainer extends React.Component<PropsType> {
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
   return {
     userProfile: state.profilePage.userProfile,
-    userStatus: state.profilePage.userStatus,
-    isAuth: state.auth.isAuth,
-    authorizedUserId: state.auth.userId
+    userStatus: state.profilePage.userStatus
   }
 }
 
