@@ -43,6 +43,10 @@ class ProfileApiContainer extends React.Component<PropsType> {
       // userId = '20056'
       //если не выбран user - показываем собственный профиль
       userId = this.props.authorizedUserId
+      if (!userId) {
+        //способ редиректа
+        this.props.history.push("/login")
+      }
     }
     this.props.getUserProfilePage(userId)
     this.props.getUserProfilePageStatus(userId)
@@ -73,7 +77,7 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 //типизация connect: MapStateToPropsType + MapDispatchToPropsType + StateType + объект пропсов,
 // которые передается в компоненту ProfileContainer в Content.tsx
 //c помощью compose оборачиваем последовательно ProfileApiContainer в 3 хока
-export const ProfileComposedContainers = compose<React.ComponentType>(
+export default compose<React.ComponentType>(
   withAuthRedirect,
   connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>(
     mapStateToProps, {getUserProfilePage, getUserProfilePageStatus, updateUserProfilePageStatus}),

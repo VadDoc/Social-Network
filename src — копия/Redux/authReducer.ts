@@ -2,6 +2,7 @@ import {authApi} from "../api/api";
 import {Action} from "redux";
 import { ThunkAction } from 'redux-thunk'
 import {StateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 //типизация thunk
 type ThunkType<A extends Action> = ThunkAction<Promise<void>, StateType, unknown, A>
 
@@ -12,8 +13,9 @@ type AuthStateType = {
   isAuth: boolean
   title: string
 }
-type SetUserDataAction = ReturnType<typeof setAuthUserData>
-type ActionsType = SetUserDataAction
+type SetUserDataActionType = ReturnType<typeof setAuthUserData>
+type StopSubmitAction = ReturnType<typeof stopSubmitAC>
+type ActionsType = SetUserDataActionType | StopSubmitAction
 
 const initialState = {
   id: null,
@@ -29,7 +31,6 @@ export const authReducer = (state: AuthStateType = initialState, action: Actions
       return {
         ...state,
         ...action.payload,
-        // isAuth: true
       }
     default:
       return state
@@ -45,12 +46,18 @@ const setAuthUserData = (userId: number | null, login: string | null, email: str
 
 export const getAuthUserData = (): ThunkType<ActionsType> => async (dispatch) => {
   authApi.setAuthUser().then(response => {
-    // если resultCode = 0 - залогинились, 1 - нет
+    // если resultCode = 0 - залогинился, 1 - нет
     if (response.resultCode === 0) {
       const {id, login, email} = response.data
       dispatch(setAuthUserData(id, login, email, true))
     }
   })
+}
+//специальный action от redux-form для обработки ошибок
+//передаем в аргументах stopSubmitAction название формы (Login.tsx)
+// и проблемные свойства ('login', 'password' или _error (общая ошибка)
+const stopSubmitAC = (message: string) => {
+  return stopSubmit('login', {_error: `${message}`})
 }
 
 //типизация thunk
@@ -58,10 +65,13 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
   authApi.login(email, password, rememberMe).then(response => {
     if (response.resultCode === 0) {
       dispatch(getAuthUserData())
+    } else {
+      //обработка ошибки
+      const message = response.messages ? response.messages[0] : 'Some error'
+      dispatch(stopSubmitAC(message))
     }
   })
 }
-
 
 export const logout = (): ThunkType<ActionsType> => async (dispatch) => {
   authApi.logout().then(response => {

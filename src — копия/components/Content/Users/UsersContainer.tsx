@@ -65,7 +65,7 @@ const mapStateToProps = (state: StateType) => {
 }
 
 //connect из actionCreators создаст колбеки и вернет с теми же названиями
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
 (mapStateToProps, {
   follow, unFollow, setCurrentPage, getUsers, getUsersOnChange
 })(UsersApiContainer)
