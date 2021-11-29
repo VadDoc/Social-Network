@@ -135,17 +135,15 @@ export const toggleFollowingProgress = (userId: number, isFetching: boolean) => 
 }
 
 //создаем ThunkCreators
-export const requestUsers = (page: number, pageSize: number) => {
+export const getUsers = (currentPage: number,pageSize: number) => {
   return (dispatch: Dispatch) => {
-    dispatch(setToggleIsFetch(true)) //меняем статус preloader
-    dispatch(setCurrentPage(page))
-    userApi.getUsers(page, pageSize).then(data => {
-      dispatch(setToggleIsFetch(false))
-      dispatch(setUsers(data.items)) // отправляем в store users
-      dispatch(setTotalUsersCount(data.totalCount)) //отправляем в store кол-во users
-    })
-  }
-}
+  dispatch(setToggleIsFetch(true)) //меняем статус preloader
+    userApi.getUsers(currentPage, pageSize).then(data => {
+    dispatch(setToggleIsFetch(false))
+    dispatch(setUsers(data.items)) // отправляем в store users
+    dispatch(setTotalUsersCount(data.totalCount)) //отправляем в store кол-во users
+  })
+}}
 
 export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) => {
   return (dispatch: Dispatch) => {
@@ -155,8 +153,7 @@ export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) =>
       dispatch(setToggleIsFetch(false))
       dispatch(setUsers(data.items)) // отправляем в store users
     })
-  }
-}
+  }}
 
 export const follow = (userID: number) => {
   return (dispatch: Dispatch) => {
@@ -168,8 +165,7 @@ export const follow = (userID: number) => {
         }
         dispatch(toggleFollowingProgress(userID, false)) //unDisable кнопку
       })
-  }
-}
+  }}
 
 export const unFollow = (userID: number) => {
   return (dispatch: Dispatch) => {
@@ -181,5 +177,4 @@ export const unFollow = (userID: number) => {
         }
         dispatch(toggleFollowingProgress(userID, false)) //unDisable кнопку
       })
-  }
-}
+  }}

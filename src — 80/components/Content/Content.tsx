@@ -39,7 +39,7 @@ class Content extends React.Component<MapDispatchToPropsType & MapStateToPropsTy
         <Route path="/music" render={() => <Music/>}/>
         <Route path="/settings" render={() => <Settings/>}/>
         <Route path="/login" render={() => <Login/>}/>
-        <Redirect from='/' to='/profile'/>
+        {/*<Redirect from='/' to='/profile'/>*/}
       </main>
     )
   }
