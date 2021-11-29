@@ -1,8 +1,15 @@
 import {StateType} from "./redux-store";
+import {createSelector} from "reselect";
+import {UserType} from "./users-reduсer";
 
-export const getUsers  = (state: StateType) => {
+const getUsersSelector  = (state: StateType) => {
   return state.usersPage.users
 }
+// если сложный селектор - используем библиотеку reselect - мемоизирует часть стейта,
+//перерисовывает компоненту только при изменении зависимости (users)
+export const getUsers = createSelector(getUsersSelector, (users: Array<UserType>) => {
+  return users.filter(u => true) //производим некую фильтрацию
+})
 
 export const pageSize  = (state: StateType) => {
   return state.usersPage.pageSize
