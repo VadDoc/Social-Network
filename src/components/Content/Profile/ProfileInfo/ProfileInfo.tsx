@@ -10,7 +10,7 @@ import twitter from './../../../../images/twitter.png'
 import vk from './../../../../images/vk.png'
 import {DataUserProfileType} from "../../../../Redux/profile-reducer";
 import {Preloader} from "../../../Сommon/Preloader/Preloader";
-import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {ProfileStatusHooks} from "./ProfileStatus/ProfileStatusHooks";
 
 type PropsType = {
   userProfile: DataUserProfileType
@@ -75,7 +75,7 @@ export const ProfileInfo = ({userProfile, userStatus, updateStatus}: PropsType) 
         </>
         }
       </div>
-      <ProfileStatus status={userStatus} updateStatus={updateStatus}/>
+      <ProfileStatusHooks status={userStatus} updateStatus={updateStatus}/>
     </div>
   )
 }
