@@ -7,7 +7,7 @@ import {FormDataType, MyPostsForm} from "./MyPostsForm";
 
 const MyPostsReduxForm = reduxForm<FormDataType>({form: 'newPost'})(MyPostsForm)
 
-export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({profilePage, addPost}) => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({profilePage, addPost}) => {
   const onSubmit = (value: FormDataType) => {
     addPost(value.newPost)
   }
@@ -18,4 +18,4 @@ export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({profilePage, add
       <Posts posts={profilePage.myPostsData}/>
     </div>
   )
-})
+}
