@@ -38,14 +38,11 @@ export type ProfileReducerActionsType =
   AddPostActionType |
   GetUserProfileActionType |
   GetUserProfileStatusActionType |
-  UpdateUserProfileStatusActionType |
-  DeletePostActionType
+  UpdateUserProfileStatusActionType
 type AddPostActionType = ReturnType<typeof addPostAC>
 type GetUserProfileActionType = ReturnType<typeof getUserProfile>
 type GetUserProfileStatusActionType = ReturnType<typeof getUserProfileStatus>
 type UpdateUserProfileStatusActionType = ReturnType<typeof updateUserProfileStatus>
-type DeletePostActionType = ReturnType<typeof deletePost>
-
 
 const initialState = {
   myPostsData: [
@@ -62,11 +59,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
       return {
         ...state,
         myPostsData: [...state.myPostsData, {id: v1(), img: img, message: action.post, likesCount: 0}]
-      }
-    case 'DELETE_POST':
-      return {
-        ...state,
-        myPostsData: [...state.myPostsData.filter(post => post.id !== action.postId)]
       }
     case 'GET_USER_PROFILE':
       return {
@@ -108,12 +100,6 @@ const getUserProfileStatus = (userId: string) => {
 const updateUserProfileStatus = (userStatus: string) => {
   return {
     type: 'UPDATE_USER_PROFILE_STATUS', userStatus
-  } as const
-}
-
-export const deletePost = (postId: string) => {
-  return {
-    type: 'DELETE_POST', postId
   } as const
 }
 //THUNKS
