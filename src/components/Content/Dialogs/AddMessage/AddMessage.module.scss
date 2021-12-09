@@ -1,3 +1,5 @@
+@import '../../../../utilites/styles/variables';
+
 .addMessage {
   textarea {
     width: 100%;
@@ -5,7 +7,7 @@
     height: 100px;
     border-radius: 20px;
     padding: 20px;
-    border: solid 1px goldenrod;
+    border: solid 1px $colorGoldenrod;
     background-color: #fdf5e1;
     color: #034bb6;
     font-size: 20px;
@@ -13,19 +15,4 @@
     resize: none;
   }
 
-  button {
-    font-size: 16px;
-    border: solid 1px #034bb6;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background-color: #034bb6;
-    color: white;
-    cursor: pointer;
-    transition: .4s ease;
-  }
-
-  button:hover {
-    background-color: goldenrod;
-    border: solid 1px goldenrod;
-  }
 }

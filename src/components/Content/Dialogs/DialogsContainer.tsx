@@ -6,13 +6,6 @@ import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import React from "react";
 
-type MapStateToPropsType = {
-  messagesPage: MessagesPageType
-}
-type MapDispatchToPropsType = {
-  sendNewMessage: (newMessage: string) => void
-}
-
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
@@ -34,3 +27,9 @@ export default compose<React.ComponentType>(
   withAuthRedirect
 )(Dialogs)
 
+type MapStateToPropsType = {
+  messagesPage: MessagesPageType
+}
+type MapDispatchToPropsType = {
+  sendNewMessage: (newMessage: string) => void
+}

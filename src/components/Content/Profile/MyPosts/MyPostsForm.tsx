@@ -2,13 +2,7 @@ import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
 import {maxLength, required} from "../../../../utilites/validators/validators";
 import {Textarea} from "../../../Сommon/FormsControls/FormsControls";
-
-export type FormDataType = {
-  newPost: string
-}
-type IProps = {
-  //пропсы, приходящие из родительской компоненты
-}
+import {Button} from "../../Button/Button";
 
 const maxLength30 = maxLength(30)
 
@@ -25,8 +19,15 @@ export const MyPostsForm: React.FC<InjectedFormProps<FormDataType> & IProps> = (
         />
       </p>
       <p>
-        <button>Add post</button>
+        <Button>Add post</Button>
       </p>
     </form>
   )
+}
+
+export type FormDataType = {
+  newPost: string
+}
+type IProps = {
+  //пропсы, приходящие из родительской компоненты
 }

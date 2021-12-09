@@ -1,8 +1,6 @@
-//базовые настройки запроса в axios
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  //настройки запроса чтобы обойти CORS и послать cookie
   baseURL: 'https://social-network.samuraijs.com/api/1.0',
   withCredentials: true,
   headers: {

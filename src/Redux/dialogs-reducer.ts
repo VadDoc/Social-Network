@@ -2,7 +2,6 @@ import {v1} from "uuid";
 import {DialogPropsType} from "../components/Content/Dialogs/Dialog/Dialog";
 import {MessageType} from "../components/Content/Dialogs/Message/Message";
 
-export type MessagesPageType = typeof initialState
 const initialState = {
   dialogsData: [
     {id: v1(), name: 'Ann'},
@@ -29,9 +28,9 @@ export const dialogsReducer = (state: MessagesPageType = initialState, action: D
   }
 }
 
+export type MessagesPageType = typeof initialState
 export type DialogsReducerActionsType = AddMessageActionType
 type AddMessageActionType = ReturnType<typeof sendNewMessageAC>
-
 export const sendNewMessageAC = (newMessage: string) => {
   return {
     type: 'ADD_MESSAGE',

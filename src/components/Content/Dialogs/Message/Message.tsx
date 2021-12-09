@@ -6,8 +6,8 @@ export type MessageType = {
   id: string
 }
 
-export const Message = (props: MessageType) => {
+export const Message = ({message}: MessageType) => {
   return (
-    <div className={styles.message}>{props.message}</div>
+    <div className={styles.message}>{message}</div>
   )
 }

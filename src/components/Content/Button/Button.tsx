@@ -3,7 +3,7 @@ import styles from './Button.module.scss'
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 type ButtonPropsType = DefaultButtonPropsType & {
-  callBack: () => void
+  callBack?: () => void
 }
 
 export const Button: React.FC<ButtonPropsType> = ({callBack, className, children}) => {

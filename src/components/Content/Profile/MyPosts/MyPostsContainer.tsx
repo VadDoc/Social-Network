@@ -4,19 +4,12 @@ import {StateType} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-type MapStateToPropsType = {
-  profilePage: ProfilePageType
-}
-type MapDispatchToPropsType = {
-  addPost: (post: string) => void
-}
-export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
-
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
   return {
     profilePage: state.profilePage
   }
 }
+
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
   return {
     addPost: (post: string) => {
@@ -26,3 +19,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
+type MapStateToPropsType = {
+  profilePage: ProfilePageType
+}
+type MapDispatchToPropsType = {
+  addPost: (post: string) => void
+}
+export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType

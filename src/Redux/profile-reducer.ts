@@ -5,6 +5,94 @@ import img2 from "../images/ava2.jpeg";
 import {Dispatch} from "redux";
 import {profileApi} from "../api/api";
 
+const initialState = {
+  myPostsData: [
+    {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
+    {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
+  ] as Array<PostItemType>,
+  userProfile: {} as DataUserProfileType,
+  userStatus: ''
+}
+
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
+  switch (action.type) {
+    case 'profile/ADD_POST':
+      return {
+        ...state,
+        myPostsData: [...state.myPostsData, {id: v1(), img: img, message: action.post, likesCount: 0}]
+      }
+    case 'profile/GET_USER_PROFILE':
+      return {
+        ...state,
+        userProfile: action.dataUserProfile
+      }
+    case 'profile/GET_USER_PROFILE_STATUS':
+      return {
+        ...state,
+        userStatus: action.userId
+      }
+    case 'profile/UPDATE_USER_PROFILE_STATUS':
+      return {
+        ...state,
+        userStatus: action.userStatus
+      }
+    case 'profile/DELETE_POST':
+      return {
+        ...state,
+        myPostsData: [...state.myPostsData.filter(post => post.id !== action.postId)]
+      }
+    default:
+      return state
+  }
+}
+
+export const addPostAC = (post: string) => {
+  return {
+    type: 'profile/ADD_POST', post
+  } as const
+}
+const getUserProfile = (dataUserProfile: DataUserProfileType) => {
+  return {
+    type: 'profile/GET_USER_PROFILE', dataUserProfile
+  } as const
+}
+
+const getUserProfileStatus = (userId: string) => {
+  return {
+    type: 'profile/GET_USER_PROFILE_STATUS', userId
+  } as const
+}
+
+const updateUserProfileStatus = (userStatus: string) => {
+  return {
+    type: 'profile/UPDATE_USER_PROFILE_STATUS', userStatus
+  } as const
+}
+
+export const deletePost = (postId: string) => {
+  return {
+    type: 'profile/DELETE_POST', postId
+  } as const
+}
+//THUNKS
+export const getUserProfilePage = (userId: string) => async (dispatch: Dispatch) => {
+  const response = await profileApi.getUserProfile(userId)
+  dispatch(getUserProfile(response.data)) // отправляем в store userProfile
+}
+
+
+export const getUserProfilePageStatus = (userId: string) => async (dispatch: Dispatch) => {
+  const response = await profileApi.getUserProfileStatus(userId)
+  dispatch(getUserProfileStatus(response.data))
+}
+
+export const updateUserProfilePageStatus = (userStatus: string) => async (dispatch: Dispatch) => {
+  const response = await profileApi.updateUserProfileStatus(userStatus)
+  if (response.data.resultCode === 0) {
+    dispatch(updateUserProfileStatus(userStatus))
+  }
+}
+
 export type PostItemType = {
   id: string
   img: string
@@ -33,7 +121,6 @@ export type DataUserProfileType = {
   }
 }
 export type ProfilePageType = typeof initialState
-
 export type ProfileReducerActionsType =
   AddPostActionType |
   GetUserProfileActionType |
@@ -45,100 +132,3 @@ type GetUserProfileActionType = ReturnType<typeof getUserProfile>
 type GetUserProfileStatusActionType = ReturnType<typeof getUserProfileStatus>
 type UpdateUserProfileStatusActionType = ReturnType<typeof updateUserProfileStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
-
-
-const initialState = {
-  myPostsData: [
-    {id: v1(), img: img1, message: 'Hello! How are you', likesCount: 4},
-    {id: v1(), img: img2, message: 'What are doing now?', likesCount: 14},
-  ] as Array<PostItemType>,
-  userProfile: {} as DataUserProfileType,
-  userStatus: ''
-}
-
-export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
-  switch (action.type) {
-    case 'ADD_POST':
-      return {
-        ...state,
-        myPostsData: [...state.myPostsData, {id: v1(), img: img, message: action.post, likesCount: 0}]
-      }
-    case 'DELETE_POST':
-      return {
-        ...state,
-        myPostsData: [...state.myPostsData.filter(post => post.id !== action.postId)]
-      }
-    case 'GET_USER_PROFILE':
-      return {
-        ...state,
-        userProfile: action.dataUserProfile
-      }
-    case 'GET_USER_PROFILE_STATUS':
-      return {
-        ...state,
-        userStatus: action.userId
-      }
-    case 'UPDATE_USER_PROFILE_STATUS':
-      return {
-        ...state,
-        userStatus: action.userStatus
-      }
-    default:
-      return state
-  }
-}
-
-export const addPostAC = (post: string) => {
-  return {
-    type: 'ADD_POST', post
-  } as const
-}
-const getUserProfile = (dataUserProfile: DataUserProfileType) => {
-  return {
-    type: 'GET_USER_PROFILE', dataUserProfile
-  } as const
-}
-
-const getUserProfileStatus = (userId: string) => {
-  return {
-    type: 'GET_USER_PROFILE_STATUS', userId
-  } as const
-}
-
-const updateUserProfileStatus = (userStatus: string) => {
-  return {
-    type: 'UPDATE_USER_PROFILE_STATUS', userStatus
-  } as const
-}
-
-export const deletePost = (postId: string) => {
-  return {
-    type: 'DELETE_POST', postId
-  } as const
-}
-//THUNKS
-export const getUserProfilePage = (userId: string) => {
-  return (dispatch: Dispatch) => {
-    profileApi.getUserProfile(userId).then(response => {
-      dispatch(getUserProfile(response.data)) // отправляем в store userProfile
-    })
-  }
-}
-
-export const getUserProfilePageStatus = (userId: string) => {
-  return (dispatch: Dispatch) => {
-    profileApi.getUserProfileStatus(userId).then(response => {
-      dispatch(getUserProfileStatus(response.data))
-    })
-  }
-}
-
-export const updateUserProfilePageStatus = (userStatus: string) => {
-  return (dispatch: Dispatch) => {
-    profileApi.updateUserProfileStatus(userStatus).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(updateUserProfileStatus(userStatus))
-      }
-    })
-  }
-}

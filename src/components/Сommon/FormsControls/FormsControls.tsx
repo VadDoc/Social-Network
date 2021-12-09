@@ -1,16 +1,9 @@
 import React from "react";
 import styles from "./FormsControls.module.scss";
 
-//приходят особые пропсы, в которых есть input, meta.
-type PropsType = {
-  input: {}
-  meta: {error: boolean, touched: boolean}
-}
-
-//с помощью rest оператора сначала прокидываем п пропсы input, meta, а потом все остальное
+//с помощью rest оператора сначала прокидываем в пропсы input, meta, а потом все остальное
 export const Textarea = ({input, meta, ...restProps}: PropsType) => {
   const hasError = meta.touched && meta.error
-  // debugger
 
   return (
     <div className={styles.formsControls + ' ' + (hasError && styles.error)}>
@@ -29,4 +22,10 @@ export const Input = ({input, meta, ...restProps}: PropsType) => {
       {hasError && <div className={styles.errorText}>{meta.error}</div>}
     </div>
   )
+}
+
+//приходят особые пропсы, в которых есть input, meta.
+type PropsType = {
+  input: {}
+  meta: {error: boolean, touched: boolean}
 }

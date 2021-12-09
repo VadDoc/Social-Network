@@ -1,17 +1,11 @@
 import React, {ChangeEvent} from 'react'
 import styles from './ProfileStatus.module.scss'
 
-type PropsType = {
-  status: string
-  updateStatus: (userStatus: string) => void
-}
-
 export class ProfileStatusClass extends React.Component<PropsType> {
   state = {
     editMode: false,
     status: this.props.status
   }
-
   //используем стрелочную, чтобы не потерять контекст во время вызова, не нужно байндить activateEditMode.bind(this)
   activateEditMode = () => {
     this.setState({editMode: true})
@@ -54,4 +48,9 @@ export class ProfileStatusClass extends React.Component<PropsType> {
       </div>
     )
   }
+}
+
+type PropsType = {
+  status: string
+  updateStatus: (userStatus: string) => void
 }

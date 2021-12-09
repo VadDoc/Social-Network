@@ -12,12 +12,6 @@ import {DataUserProfileType} from "../../../../Redux/profile-reducer";
 import {Preloader} from "../../../Сommon/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 
-type PropsType = {
-  userProfile: DataUserProfileType
-  userStatus: string
-  updateStatus: (userStatus: string) => void
-}
-
 export const ProfileInfo = ({userProfile, userStatus, updateStatus}: PropsType) => {
   const [logo, setLogo] = useState(false)
   const contacts = userProfile.contacts
@@ -28,6 +22,7 @@ export const ProfileInfo = ({userProfile, userStatus, updateStatus}: PropsType) 
   const hideAvatar = () => {
     setLogo(false)
   }
+
   return (
     <div className={styles.profileInfo}>
       <h2>{userProfile.fullName}</h2>
@@ -78,4 +73,10 @@ export const ProfileInfo = ({userProfile, userStatus, updateStatus}: PropsType) 
       <ProfileStatus status={userStatus} updateStatus={updateStatus}/>
     </div>
   )
+}
+
+type PropsType = {
+  userProfile: DataUserProfileType
+  userStatus: string
+  updateStatus: (userStatus: string) => void
 }

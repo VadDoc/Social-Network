@@ -1,11 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import styles from './ProfileStatus.module.scss'
 
-type PropsType = {
-  status: string
-  updateStatus: (userStatus: string) => void
-}
-
 export const ProfileStatus = (props: PropsType) => {
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
@@ -46,5 +41,9 @@ export const ProfileStatus = (props: PropsType) => {
       }
     </div>
   )
+}
 
+type PropsType = {
+  status: string
+  updateStatus: (userStatus: string) => void
 }

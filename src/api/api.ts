@@ -116,7 +116,7 @@ export const profileApi = {
 }
 
 export const authApi = {
-  setAuthUser() {
+  me() {
     return (
       axiosInstance.get<DataAuthType>(`auth/me`)
         .then(response => response.data)

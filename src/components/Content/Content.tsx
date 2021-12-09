@@ -14,13 +14,6 @@ import {connect} from "react-redux";
 import {initializeApp} from "../../Redux/app-reducer";
 import {Preloader} from "../Сommon/Preloader/Preloader";
 
-type MapDispatchToPropsType = {
-  initializeApp: () => void
-}
-type MapStateToPropsType = {
-  initialized: boolean
-}
-
 class Content extends React.Component<MapDispatchToPropsType & MapStateToPropsType> {
   componentDidMount() {
     this.props.initializeApp()
@@ -45,7 +38,6 @@ class Content extends React.Component<MapDispatchToPropsType & MapStateToPropsTy
   }
 }
 
-
 const mapStateToProps = (state: StateType): MapStateToPropsType => ({
   initialized: state.app.initialized
 })
@@ -55,3 +47,11 @@ export default compose<React.ComponentType>(
   connect<MapStateToPropsType, MapDispatchToPropsType, {}, StateType>
   (mapStateToProps, {initializeApp})
 )(Content)
+
+
+type MapDispatchToPropsType = {
+  initializeApp: () => void
+}
+type MapStateToPropsType = {
+  initialized: boolean
+}

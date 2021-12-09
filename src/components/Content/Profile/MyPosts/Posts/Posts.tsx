@@ -2,10 +2,6 @@ import React from 'react'
 import styles from './Posts.module.scss'
 import {PostItemType} from "../../../../../Redux/profile-reducer";
 
-type PropsType = {
-  posts: Array<PostItemType>
-}
-
 const Posts: React.FC<PropsType> = ({posts}:PropsType) => {
   return (
     <div className={styles.posts}>
@@ -18,6 +14,10 @@ const Posts: React.FC<PropsType> = ({posts}:PropsType) => {
       ))}
     </div>
   )
+}
+
+type PropsType = {
+  posts: Array<PostItemType>
 }
 
 export default Posts

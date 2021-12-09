@@ -1,3 +1,17 @@
+
 .button {
+  font-size: 16px;
+  border: solid 1px #034bb6;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #034bb6;
+  color: white;
   cursor: pointer;
+  transition: .4s ease;
+
+  &:hover {
+    background-color: goldenrod;
+    border: solid 1px goldenrod;
+  }
 }
+
