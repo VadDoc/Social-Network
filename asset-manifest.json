@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/Social-Network/static/css/main.9baa5db4.chunk.css",
-    "main.js": "/Social-Network/static/js/main.1b0bf25b.chunk.js",
-    "main.js.map": "/Social-Network/static/js/main.1b0bf25b.chunk.js.map",
-    "runtime-main.js": "/Social-Network/static/js/runtime-main.893afedb.js",
-    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.893afedb.js.map",
-    "static/js/2.9ee370d9.chunk.js": "/Social-Network/static/js/2.9ee370d9.chunk.js",
-    "static/js/2.9ee370d9.chunk.js.map": "/Social-Network/static/js/2.9ee370d9.chunk.js.map",
-    "static/js/3.81c100b0.chunk.js": "/Social-Network/static/js/3.81c100b0.chunk.js",
-    "static/js/3.81c100b0.chunk.js.map": "/Social-Network/static/js/3.81c100b0.chunk.js.map",
+    "main.css": "/Social-Network/static/css/main.e73ac6f1.chunk.css",
+    "main.js": "/Social-Network/static/js/main.4dbc7c6d.chunk.js",
+    "main.js.map": "/Social-Network/static/js/main.4dbc7c6d.chunk.js.map",
+    "runtime-main.js": "/Social-Network/static/js/runtime-main.cc07ce6c.js",
+    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.cc07ce6c.js.map",
+    "static/js/2.156a974a.chunk.js": "/Social-Network/static/js/2.156a974a.chunk.js",
+    "static/js/2.156a974a.chunk.js.map": "/Social-Network/static/js/2.156a974a.chunk.js.map",
+    "static/js/3.0d978a5b.chunk.js": "/Social-Network/static/js/3.0d978a5b.chunk.js",
+    "static/js/3.0d978a5b.chunk.js.map": "/Social-Network/static/js/3.0d978a5b.chunk.js.map",
     "index.html": "/Social-Network/index.html",
-    "static/css/main.9baa5db4.chunk.css.map": "/Social-Network/static/css/main.9baa5db4.chunk.css.map",
-    "static/js/2.9ee370d9.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.9ee370d9.chunk.js.LICENSE.txt",
-    "static/media/Spinner-1s-273px.2072535f.svg": "/Social-Network/static/media/Spinner-1s-273px.2072535f.svg",
+    "static/css/main.e73ac6f1.chunk.css.map": "/Social-Network/static/css/main.e73ac6f1.chunk.css.map",
+    "static/js/2.156a974a.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.156a974a.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/Social-Network/static/media/Teko-Regular.7a95ca68.ttf",
     "static/media/ava.28e44cb7.png": "/Social-Network/static/media/ava.28e44cb7.png",
     "static/media/ava1.4ab0e03f.jpeg": "/Social-Network/static/media/ava1.4ab0e03f.jpeg",
@@ -21,9 +20,9 @@
     "static/media/job-logo.b290acaf.png": "/Social-Network/static/media/job-logo.b290acaf.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.893afedb.js",
-    "static/js/2.9ee370d9.chunk.js",
-    "static/css/main.9baa5db4.chunk.css",
-    "static/js/main.1b0bf25b.chunk.js"
+    "static/js/runtime-main.cc07ce6c.js",
+    "static/js/2.156a974a.chunk.js",
+    "static/css/main.e73ac6f1.chunk.css",
+    "static/js/main.4dbc7c6d.chunk.js"
   ]
 }
