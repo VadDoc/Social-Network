@@ -1,0 +1,21 @@
+@import '../../../../utilites/styles/variables';
+
+.myPosts {
+  img {
+    width: 70%;
+  }
+
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    border-radius: 20px;
+    padding: 20px;
+    border: solid 1px $colorGoldenrod;
+    background-color: #fdf5e1;
+    color: #034bb6;
+    font-size: 20px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+}

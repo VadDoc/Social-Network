@@ -12,17 +12,19 @@ export const Users = (props: PropsType) => {
       <Paginator
         currentPage={currentPage}
         pageSize={pageSize}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
         onChangedPage={onChangedPage}/>
-      {users.map(user => (
-        <User
-          user={user}
-          key={user.id}
-          follow={follow}
-          unFollow={unFollow}
-          followingInProgress={followingInProgress}
-        />
-      ))}
+      <div>
+        {users.map(user => (
+          <User
+            user={user}
+            key={user.id}
+            follow={follow}
+            unFollow={unFollow}
+            followingInProgress={followingInProgress}
+          />
+        ))}
+      </div>
     </div>
   )
 }

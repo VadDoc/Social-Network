@@ -21,4 +21,31 @@
     background-color: #023b91;
     color: white;;
   }
+
+  .arrowButton {
+    color: #023b91;
+    border: none;
+    background-color: inherit;
+    padding-bottom: 20px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .arrowButton:hover {
+    color: #6ca6ff;
+  }
+}
+
+.paginator{
+  margin: 10px;
+}
+
+.pageNumber {
+  padding: 2px;
+  border: 1px solid grey;
+}
+
+.selectedPage {
+  font-weight: bold;
+  color: black;
 }

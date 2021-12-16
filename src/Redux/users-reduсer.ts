@@ -3,7 +3,7 @@ import {userApi} from "../api/api";
 
 const initialState = {
   users: [],
-  pageSize: 20,
+  pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
@@ -101,6 +101,7 @@ export const requestUsers = (page: number, pageSize: number) => async (dispatch:
 }
 
 export const getUsersOnChange = (numberCurrentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+  debugger
   dispatch(setToggleIsFetch(true))  //меняем статус preloader
   dispatch(setCurrentPage(numberCurrentPage)) //отправляем в store кол-во номер текущей страницы
   const data = await userApi.getUsers(numberCurrentPage, pageSize)

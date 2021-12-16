@@ -5,7 +5,6 @@ import {
 } from "../../../Redux/users-reduсer";
 import React from "react";
 import {Users} from "./Users";
-import {Preloader} from "../../Сommon/Preloader/Preloader";
 import {
   currentPage,
   followingInProgress,
@@ -13,6 +12,7 @@ import {
   pageSize,
   totalUsersCount
 } from "../../../Redux/users-selectors";
+import {LoadingLine} from "../../Сommon/loadingLine/LoadingLine";
 
 class UsersApiContainer extends React.Component <UsersPropsType> {
   componentDidMount() {
@@ -29,7 +29,8 @@ class UsersApiContainer extends React.Component <UsersPropsType> {
   render() {
     return (
       <>
-        {this.props.isFetching ? <Preloader/> :
+        {this.props.isFetching ? <LoadingLine/> : null}
+
           <Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
@@ -39,7 +40,7 @@ class UsersApiContainer extends React.Component <UsersPropsType> {
             unFollow={this.props.unFollow}
             onChangedPage={this.onChangedPage}
             followingInProgress={this.props.followingInProgress}
-          />}
+          />
       </>
     )
   }
