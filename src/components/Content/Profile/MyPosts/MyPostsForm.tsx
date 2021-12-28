@@ -10,17 +10,17 @@ export const MyPostsForm: React.FC<InjectedFormProps<FormDataType> & IProps> = (
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>
+      <div>
         <Field
           placeholder={'New post'}
           name={'newPost'}
           component={Textarea}
           validate={[required, maxLength30]}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <Button>Add post</Button>
-      </p>
+      </div>
     </form>
   )
 }

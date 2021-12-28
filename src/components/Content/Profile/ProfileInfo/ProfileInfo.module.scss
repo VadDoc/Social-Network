@@ -1,10 +1,13 @@
 .profileInfo {
   position: relative;
-  min-height: 200px;
+  //min-height: 200px;
   width: 400px;
 
   .wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 175px;
 
     .descriptions {
       padding-left: 30px;
@@ -45,7 +48,6 @@
   .socials {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 50px;
 
     img {
       margin: 0 5px;

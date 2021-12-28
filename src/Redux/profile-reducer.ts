@@ -41,6 +41,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         ...state,
         myPostsData: [...state.myPostsData.filter(post => post.id !== action.postId)]
       }
+    case 'profile/SAVE_FILE':
+      return {
+        ...state,
+        userProfile: {...state.userProfile, photos: action.photos}
+      }
     default:
       return state
   }
@@ -74,6 +79,11 @@ export const deletePost = (postId: string) => {
     type: 'profile/DELETE_POST', postId
   } as const
 }
+const setPhoto = (photos: any) => {
+  return {
+    type: 'profile/SAVE_FILE', photos
+  } as const
+}
 //THUNKS
 export const getUserProfilePage = (userId: string) => async (dispatch: Dispatch) => {
   const response = await profileApi.getUserProfile(userId)
@@ -90,6 +100,13 @@ export const updateUserProfilePageStatus = (userStatus: string) => async (dispat
   const response = await profileApi.updateUserProfileStatus(userStatus)
   if (response.data.resultCode === 0) {
     dispatch(updateUserProfileStatus(userStatus))
+  }
+}
+
+export const savePhoto = (photos: File) => async (dispatch: Dispatch) => {
+  const response = await profileApi.savePhoto(photos)
+  if (response.data.resultCode === 0) {
+    dispatch(setPhoto(response.data.photos))
   }
 }
 
@@ -126,9 +143,12 @@ export type ProfileReducerActionsType =
   GetUserProfileActionType |
   GetUserProfileStatusActionType |
   UpdateUserProfileStatusActionType |
-  DeletePostActionType
+  DeletePostActionType |
+  SetPhotoActionType
+
 type AddPostActionType = ReturnType<typeof addPostAC>
 type GetUserProfileActionType = ReturnType<typeof getUserProfile>
 type GetUserProfileStatusActionType = ReturnType<typeof getUserProfileStatus>
 type UpdateUserProfileStatusActionType = ReturnType<typeof updateUserProfileStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
+type SetPhotoActionType = ReturnType<typeof setPhoto>

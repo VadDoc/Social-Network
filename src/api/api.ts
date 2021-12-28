@@ -55,6 +55,20 @@ export const profileApi = {
       axiosInstance.put<{ status: string }, AxiosResponse<DataPutUserProfileStatusType>>(`profile/status`, {status: userStatus})
     )
   },
+
+  savePhoto(photoFile: File) {
+    const formData = new FormData()
+    //отправка файла Axios
+    // 'image' см. в api документации
+    formData.append('image', photoFile)
+    return (
+      axiosInstance.put<any>(`profile/photo`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+    )
+  },
 }
 
 export const authApi = {

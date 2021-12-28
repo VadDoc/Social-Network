@@ -10,9 +10,11 @@ export const Profile = (props: PropsType) => {
   return (
     <div className={styles.profile}>
       <ProfileInfo
+        isOwner = {props.isOwner}
         userProfile={props.userProfile}
         userStatus={props.userStatus}
         updateStatus={props.updateStatus}
+        savePhoto={props.savePhoto}
       />
       <MyPostsContainer/>
     </div>
@@ -20,8 +22,10 @@ export const Profile = (props: PropsType) => {
 }
 
 type PropsType = {
+  isOwner: boolean
   userProfile: DataUserProfileType
   userStatus: string
   updateStatus: (userStatus: string) => void
+  savePhoto: (photos: File) => void
 }
 
